@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding RSVP</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .form-step {
+            display: none;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .form-step.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            text-align: center;
+            color: #4a5568;
+            margin-bottom: 30px;
+            font-size: 2.2em;
+            font-weight: 300;
+        }
+
+        h2 {
+            color: #4a5568;
+            margin-bottom: 20px;
+            font-size: 1.4em;
+            font-weight: 400;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: #e2e8f0;
+            border-radius: 3px;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 3px;
+            transition: width 0.3s ease;
+        }
+
+        .input-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #4a5568;
+            font-weight: 500;
+        }
+
+        input[type="text"], input[type="email"], input[type="password"], textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus, textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 15px;
+        }
+
+        .radio-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        input[type="radio"] {
+            width: 20px;
+            height: 20px;
+            accent-color: #667eea;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            flex: 1;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-secondary {
+            background: #e2e8f0;
+            color: #4a5568;
+            flex: 0 0 auto;
+        }
+
+        .btn-secondary:hover {
+            background: #cbd5e0;
+        }
+
+        .btn-add {
+            background: #48bb78;
+            color: white;
+            margin-top: 15px;
+        }
+
+        .btn-add:hover {
+            background: #38a169;
+            transform: translateY(-1px);
+        }
+
+        .guest-item {
+            background: #f7fafc;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border-left: 4px solid #667eea;
+        }
+
+        .error-message {
+            color: #e53e3e;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        .success-message {
+            text-align: center;
+            color: #38a169;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        .event-section {
+            background: #f7fafc;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            border-left: 4px solid #667eea;
+        }
+
+        .event-title {
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 10px;
+        }
+
+        .event-details {
+            color: #718096;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressBar" style="width: 0%"></div>
+        </div>
+
+        <!-- Step 1: Login -->
+        <div class="form-step active" id="step1">
+            <h1>Wedding RSVP</h1>
+            <div class="input-group">
+                <label for="guestName">Name:</label>
+                <input type="text" id="guestName" required>
+                <div class="error-message" id="nameError"></div>
+            </div>
+            <div class="input-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" required>
+                <div class="error-message" id="passwordError"></div>
+            </div>
+            <div class="button-group">
+                <button class="btn btn-primary" onclick="validateLogin()">Continue</button>
+            </div>
+        </div>
+
+        <!-- Step 2: Email -->
+        <div class="form-step" id="step2">
+            <h2>Contact Information</h2>
+            <div class="input-group">
+                <label for="email">Email Address:</label>
+                <input type="email" id="email" required>
+                <div class="error-message" id="emailError"></div>
+            </div>
+            <div class="button-group">
+                <button class="btn btn-secondary" onclick="previousStep()">Back</button>
+                <button class="btn btn-primary" onclick="nextStep()">Continue</button>
+            </div>
+        </div>
+
+        <!-- Step 3: Additional Guests -->
+        <div class="form-step" id="step3">
+            <h2>Additional Guests</h2>
+            <div id="guestsList">
+                <div class="guest-item">
+                    <strong>Primary Guest:</strong> <span id="primaryGuestName"></span>
+                </div>
+            </div>
+            <div class="input-group" id="addGuestSection" style="display: none;">
+                <label for="additionalGuest">Additional Guest Name:</label>
+                <input type="text" id="additionalGuest">
+            </div>
+            <button class="btn btn-add" id="addGuestBtn" onclick="toggleAddGuest()">Add Another Person</button>
+            <div class="button-group">
+                <button class="btn btn-secondary" onclick="previousStep()">Back</button>
+                <button class="btn btn-primary" onclick="nextStep()">Continue</button>
+            </div>
+        </div>
+
+        <!-- Step 4: Mehndi Event -->
+        <div class="form-step" id="step4">
+            <h2>Mehndi Ceremony</h2>
+            <div class="event-section">
+                <div class="event-title">Mehndi Celebration</div>
+                <div class="event-details">January 2nd, Afternoon</div>
+                <div class="radio-group">
+                    <div class="radio-item">
+                        <input type="radio" id="mehndi_yes" name="mehndi" value="yes">
+                        <label for="mehndi_yes">Yes, we'll attend</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="mehndi_no" name="mehndi" value="no">
+                        <label for="mehndi_no">No, we can't attend</label>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label for="mehndiComment">Comments (e.g., will everyone you are RSVPing for be coming?):</label>
+                    <textarea id="mehndiComment" placeholder="Any additional details..."></textarea>
+                </div>
+            </div>
+            <div class="button-group">
+                <button class="btn btn-secondary" onclick="previousStep()">Back</button>
+                <button class="btn btn-primary" onclick="nextStep()">Continue</button>
+            </div>
+        </div>
+
+        <!-- Step 5: Haldi Event -->
+        <div class="form-step" id="step5">
+            <h2>Haldi Ceremony</h2>
+            <div class="event-section">
+                <div class="event-title">Haldi Celebration</div>
+                <div class="event-details">January 3rd, Morning</div>
+                <div class="radio-group">
+                    <div class="radio-item">
+                        <input type="radio" id="haldi_yes" name="haldi" value="yes">
+                        <label for="haldi_yes">Yes, we'll attend</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="haldi_no" name="haldi" value="no">
+                        <label for="haldi_no">No, we can't attend</label>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label for="haldiComment">Comments (e.g., will everyone you are RSVPing for be coming?):</label>
+                    <textarea id="haldiComment" placeholder="Any additional details..."></textarea>
+                </div>
+            </div>
+            <div class="button-group">
+                <button class="btn btn-secondary" onclick="previousStep()">Back</button>
+                <button class="btn btn-primary" onclick="nextStep()">Continue</button>
+            </div>
+        </div>
+
+        <!-- Step 6: Wedding Event -->
+        <div class="form-step" id="step6">
+            <h2>Wedding Ceremony</h2>
+            <div class="event-section">
+                <div class="event-title">Wedding Celebration</div>
+                <div class="event-details">January 3rd, Evening</div>
+                <div class="radio-group">
+                    <div class="radio-item">
+                        <input type="radio" id="wedding_yes" name="wedding" value="yes">
+                        <label for="wedding_yes">Yes, we'll attend</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="wedding_no" name="wedding" value="no">
+                        <label for="wedding_no">No, we can't attend</label>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label for="weddingComment">Comments (e.g., will everyone you are RSVPing for be coming?):</label>
+                    <textarea id="weddingComment" placeholder="Any additional details..."></textarea>
+                </div>
+            </div>
+            <div class="button-group">
+                <button class="btn btn-secondary" onclick="previousStep()">Back</button>
+                <button class="btn btn-primary" onclick="nextStep()">Continue</button>
+            </div>
+        </div>
+
+        <!-- Step 7: Dietary Restrictions -->
+        <div class="form-step" id="step7">
+            <h2>Special Requests</h2>
+            <div class="input-group">
+                <label for="dietary">Dietary restrictions or special requests:</label>
+                <textarea id="dietary" placeholder="Please let us know about any dietary restrictions, allergies, or special requests for your party..."></textarea>
+            </div>
+            <div class="button-group">
+                <button class="btn btn-secondary" onclick="previousStep()">Back</button>
+                <button class="btn btn-primary" onclick="submitRSVP()">Submit RSVP</button>
+            </div>
+        </div>
+
+        <!-- Step 8: Confirmation -->
+        <div class="form-step" id="step8">
+            <h1>Thank You!</h1>
+            <div class="success-message">
+                <p>Your RSVP has been submitted successfully!</p>
+                <p>We're excited to celebrate with you!</p>
+                <p>You should receive a confirmation email shortly.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentStep = 1;
+        let totalSteps = 8;
+        let guests = [];
+        let addingGuest = false;
+
+        function updateProgressBar() {
+            const progress = ((currentStep - 1) / (totalSteps - 1)) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+        }
+
+        function showStep(step) {
+            // Hide all steps
+            const steps = document.querySelectorAll('.form-step');
+            steps.forEach(s => s.classList.remove('active'));
+            
+            // Show current step
+            document.getElementById('step' + step).classList.add('active');
+            updateProgressBar();
+        }
+
+        function validateLogin() {
+            const name = document.getElementById('guestName').value.trim();
+            const password = document.getElementById('password').value;
+            
+            // Clear previous errors
+            document.getElementById('nameError').textContent = '';
+            document.getElementById('passwordError').textContent = '';
+            
+            let isValid = true;
+            
+            if (!name) {
+                document.getElementById('nameError').textContent = 'Please enter your name';
+                isValid = false;
+            }
+            
+            if (!password) {
+                document.getElementById('passwordError').textContent = 'Please enter the password';
+                isValid = false;
+            }
+            
+            // For demo purposes, accept any password. In real implementation, validate against actual password
+            if (isValid) {
+                guests.push(name);
+                document.getElementById('primaryGuestName').textContent = name;
+                nextStep();
+            }
+        }
+
+        function validateEmail() {
+            const email = document.getElementById('email').value.trim();
+            const emailError = document.getElementById('emailError');
+            
+            if (!email) {
+                emailError.textContent = 'Please enter your email address';
+                return false;
+            }
+            
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                emailError.textContent = 'Please enter a valid email address';
+                return false;
+            }
+            
+            emailError.textContent = '';
+            return true;
+        }
+
+        function toggleAddGuest() {
+            const section = document.getElementById('addGuestSection');
+            const btn = document.getElementById('addGuestBtn');
+            
+            if (!addingGuest) {
+                section.style.display = 'block';
+                btn.textContent = 'Add Guest';
+                btn.onclick = addGuest;
+                addingGuest = true;
+            }
+        }
+
+        function addGuest() {
+            const guestName = document.getElementById('additionalGuest').value.trim();
+            if (!guestName) return;
+            
+            guests.push(guestName);
+            
+            // Add guest to display
+            const guestsList = document.getElementById('guestsList');
+            const guestDiv = document.createElement('div');
+            guestDiv.className = 'guest-item';
+            guestDiv.innerHTML = `<strong>Guest ${guests.length}:</strong> ${guestName}`;
+            guestsList.appendChild(guestDiv);
+            
+            // Reset form
+            document.getElementById('additionalGuest').value = '';
+            document.getElementById('addGuestSection').style.display = 'none';
+            document.getElementById('addGuestBtn').textContent = 'Add Another Person';
+            document.getElementById('addGuestBtn').onclick = toggleAddGuest;
+            addingGuest = false;
+        }
+
+        function nextStep() {
+            // Validation for specific steps
+            if (currentStep === 2 && !validateEmail()) {
+                return;
+            }
+            
+            if (currentStep < totalSteps) {
+                currentStep++;
+                showStep(currentStep);
+            }
+        }
+
+        function previousStep() {
+            if (currentStep > 1) {
+                currentStep--;
+                showStep(currentStep);
+            }
+        }
+
+        function submitRSVP() {
+            // Collect all form data
+            const rsvpData = {
+                guests: guests,
+                email: document.getElementById('email').value,
+                mehndi: {
+                    attending: document.querySelector('input[name="mehndi"]:checked')?.value || 'no',
+                    comment: document.getElementById('mehndiComment').value
+                },
+                haldi: {
+                    attending: document.querySelector('input[name="haldi"]:checked')?.value || 'no',
+                    comment: document.getElementById('haldiComment').value
+                },
+                wedding: {
+                    attending: document.querySelector('input[name="wedding"]:checked')?.value || 'no',
+                    comment: document.getElementById('weddingComment').value
+                },
+                dietary: document.getElementById('dietary').value
+            };
+            
+            // In a real application, you would send this data to your server
+            console.log('RSVP Data:', rsvpData);
+            
+            // Show confirmation
+            currentStep++;
+            showStep(currentStep);
+        }
+
+        // Initialize
+        updateProgressBar();
+    </script>
+</body>
+</html>
