@@ -436,75 +436,11 @@
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="footer-hearts">💕 🇩🇪 ❤️ 🇮🇳 💕</div>
         <p>Emanuel & Yajnaseni</p>
-        <p style="opacity: 0.8; margin-top: 1rem;">Two cultures, one love, infinite possibilities</p>
         <p style="opacity: 0.6; margin-top: 2rem; font-size: 0.9rem;">
             From Salt Lake City with love • Est. November 2016
         </p>
     </footer>
 
-    <script>
-        // Smooth scrolling for the scroll indicator
-        document.querySelector('.scroll-indicator').addEventListener('click', function() {
-            document.querySelector('.story-section').scrollIntoView({
-                behavior: 'smooth'
-            });
-        });
-
-        // RSVP form handling
-        function handleRSVP(event) {
-            event.preventDefault();
-            
-            const formData = new FormData(event.target);
-            const rsvpData = {};
-            
-            for (let [key, value] of formData.entries()) {
-                rsvpData[key] = value;
-            }
-            
-            // In a real application, this would be sent to a server
-            console.log('RSVP Data:', rsvpData);
-            
-            // Show confirmation message
-            alert(`Thank you for your RSVP, ${rsvpData.name}! We're ${rsvpData.attendance === 'yes' ? 'excited to celebrate with you' : 'sorry you can\'t make it, but thank you for letting us know'}.`);
-            
-            // Reset form
-            event.target.reset();
-        }
-
-        // Add some interactive animations
-        window.addEventListener('scroll', function() {
-            const scrolled = window.pageYOffset;
-            const hero = document.querySelector('.hero');
-            
-            if (hero) {
-                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
-            }
-        });
-
-        // Animate timeline items on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        // Observe timeline items
-        document.querySelectorAll('.timeline-item').forEach(item => {
-            item.style.opacity = '0';
-            item.style.transform = 'translateY(30px)';
-            item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(item);
-        });
-    </script>
 </body>
 </html>
