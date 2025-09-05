@@ -501,32 +501,125 @@
             }
         }
 
-        function submitRSVP() {
+        async function loadExistingData() {
+            // In a real implementation, you'd fetch the existing Excel file from your server
+            // For demo purposes, we'll create a new workbook if none exists
+            try {
+                const response = await fetch('/wedding_rsvps.xlsx');
+                if (response.ok) {
+                    const arrayBuffer = await response.arrayBuffer();
+                    return XLSX.read(arrayBuffer, { type: 'array' });
+                }
+            } catch (error) {
+                console.log('No existing file found, creating new one');
+            }
+            
+            // Create new workbook with headers
+            const wb = XLSX.utils.book_new();
+            const headers = [
+                'Submission Date', 'Primary Guest', 'All Guests', 'Email', 
+                'Mehndi Attending', 'Mehndi Comments', 
+                'Haldi Attending', 'Haldi Comments', 
+                'Wedding Attending', 'Wedding Comments', 
+                'Dietary Restrictions'
+            ];
+            const ws = XLSX.utils.aoa_to_sheet([headers]);
+            XLSX.utils.book_append_sheet(wb, ws, 'RSVPs');
+            return wb;
+        }
+
+        function downloadExcel(workbook, filename) {
+            XLSX.writeFile(workbook, filename);
+        }
+
+        async function submitRSVP() {
             // Collect all form data
             const rsvpData = {
-                guests: guests,
+                submissionDate: new Date().toLocaleString(),
+                primaryGuest: guests[0] || '',
+                allGuests: guests.join(', '),
                 email: document.getElementById('email').value,
-                mehndi: {
-                    attending: document.querySelector('input[name="mehndi"]:checked')?.value || 'no',
-                    comment: document.getElementById('mehndiComment').value
-                },
-                haldi: {
-                    attending: document.querySelector('input[name="haldi"]:checked')?.value || 'no',
-                    comment: document.getElementById('haldiComment').value
-                },
-                wedding: {
-                    attending: document.querySelector('input[name="wedding"]:checked')?.value || 'no',
-                    comment: document.getElementById('weddingComment').value
-                },
-                dietary: document.getElementById('dietary').value
+                mehndiAttending: document.querySelector('input[name="mehndi"]:checked')?.value || 'no',
+                mehndiComments: document.getElementById('mehndiComment').value,
+                haldiAttending: document.querySelector('input[name="haldi"]:checked')?.value || 'no',
+                haldiComments: document.getElementById('haldiComment').value,
+                weddingAttending: document.querySelector('input[name="wedding"]:checked')?.value || 'no',
+                weddingComments: document.getElementById('weddingComment').value,
+                dietaryRestrictions: document.getElementById('dietary').value
             };
             
-            // In a real application, you would send this data to your server
-            console.log('RSVP Data:', rsvpData);
+            try {
+                // Load existing workbook or create new one
+                const workbook = await loadExistingData();
+                const worksheet = workbook.Sheets['RSVPs'];
+                
+                // Convert worksheet to array to add new row
+                const data = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+                
+                // Add new row with form data
+                const newRow = [
+                    rsvpData.submissionDate,
+                    rsvpData.primaryGuest,
+                    rsvpData.allGuests,
+                    rsvpData.email,
+                    rsvpData.mehndiAttending,
+                    rsvpData.mehndiComments,
+                    rsvpData.haldiAttending,
+                    rsvpData.haldiComments,
+                    rsvpData.weddingAttending,
+                    rsvpData.weddingComments,
+                    rsvpData.dietaryRestrictions
+                ];
+                
+                data.push(newRow);
+                
+                // Create new worksheet with updated data
+                const newWorksheet = XLSX.utils.aoa_to_sheet(data);
+                workbook.Sheets['RSVPs'] = newWorksheet;
+                
+                // Download the updated Excel file
+                downloadExcel(workbook, 'wedding_rsvps.xlsx');
+                
+                console.log('RSVP Data saved to Excel:', rsvpData);
+                
+                // In a real implementation, you would also send this file to your server
+                // await uploadToServer(workbook);
+                
+            } catch (error) {
+                console.error('Error saving RSVP data:', error);
+                alert('There was an error saving your RSVP. Please try again.');
+                return;
+            }
             
             // Show confirmation
             currentStep++;
             showStep(currentStep);
+        }
+
+        // Function to upload file to server (implement based on your server setup)
+        async function uploadToServer(workbook) {
+            // Convert workbook to blob
+            const excelBuffer = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+            const blob = new Blob([excelBuffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+            
+            // Create FormData and upload
+            const formData = new FormData();
+            formData.append('file', blob, 'wedding_rsvps.xlsx');
+            
+            try {
+                const response = await fetch('/upload-rsvp', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                if (!response.ok) {
+                    throw new Error('Upload failed');
+                }
+                
+                console.log('File uploaded successfully to server');
+            } catch (error) {
+                console.error('Error uploading to server:', error);
+            }
         }
 
         // Initialize
