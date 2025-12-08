@@ -72,6 +72,31 @@
             animation: fadeInUp 1s ease-out 0.5s both;
         }
 
+        .hero-buttons {
+            margin-top: 2rem;
+            animation: fadeInUp 1s ease-out 1s both;
+        }
+
+        .hero-link {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            margin: 0 1rem;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            text-decoration: none;
+            border: 2px solid white;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .hero-link:hover {
+            background: white;
+            color: #667eea;
+            transform: translateY(-2px);
+        }
+
         .scroll-indicator {
             position: absolute;
             bottom: 2rem;
@@ -122,170 +147,37 @@
             border-radius: 2px;
         }
 
-        .story-section {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-        }
-
-        .story-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .story-text {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: #555;
-        }
-
-        .story-highlight {
-            background: rgba(102, 126, 234, 0.1);
-            padding: 2rem;
-            border-radius: 15px;
-            border-left: 4px solid #667eea;
-        }
-
-        .timeline {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 2rem;
-            margin: 3rem 0;
-        }
-
-        .timeline-item {
-            text-align: center;
-            padding: 2rem;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .timeline-item:hover {
-            transform: translateY(-5px);
-        }
-
-        .timeline-date {
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: #667eea;
-            margin-bottom: 0.5rem;
-        }
-
-        .timeline-event {
-            font-size: 1rem;
-            color: #666;
-        }
-
         .cultural-section {
             background: white;
         }
 
-        .cultural-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            margin-top: 3rem;
+        .cultural-section ul {
+            max-width: 600px;
+            margin: 0 auto;
+            list-style: none;
         }
 
-        .culture-card {
-            text-align: center;
-            padding: 3rem 2rem;
-            border-radius: 20px;
+        .cultural-section li {
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 15px;
+            font-size: 1.1rem;
             transition: transform 0.3s ease;
         }
 
-        .culture-card:hover {
-            transform: scale(1.05);
+        .cultural-section li:hover {
+            transform: translateX(10px);
         }
 
-        .german-card {
-            background: linear-gradient(135deg, #ffafbd 0%, #ffc3a0 100%);
-        }
-
-        .bengali-card {
-            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
-        }
-
-        .culture-icon {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-        }
-
-        .culture-title {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            color: #2c3e50;
-        }
-
-        .culture-description {
-            font-size: 1.1rem;
-            color: #555;
-            line-height: 1.6;
-        }
-
-        .rsvp-section {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            text-align: center;
-        }
-
-        .rsvp-section h2 {
-            color: white;
-        }
-
-        .rsvp-form {
-            max-width: 600px;
-            margin: 0 auto;
-            background: rgba(255,255,255,0.1);
-            padding: 3rem;
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-        }
-
-        .form-group {
-            margin-bottom: 2rem;
-            text-align: left;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
+        .cultural-section a {
+            color: #667eea;
+            text-decoration: none;
             font-weight: bold;
         }
 
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
-            width: 100%;
-            padding: 1rem;
-            border: none;
-            border-radius: 10px;
-            font-size: 1rem;
-            background: rgba(255,255,255,0.9);
-        }
-
-        .form-group textarea {
-            min-height: 120px;
-            resize: vertical;
-        }
-
-        .submit-btn {
-            background: rgba(255,255,255,0.2);
-            color: white;
-            padding: 1rem 3rem;
-            border: 2px solid white;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .submit-btn:hover {
-            background: white;
-            color: #667eea;
+        .cultural-section a:hover {
+            text-decoration: underline;
         }
 
         .footer {
@@ -317,14 +209,10 @@
                 margin: 0 1rem;
             }
             
-            .story-content,
-            .cultural-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-            
-            .timeline {
-                flex-direction: column;
+            .hero-link {
+                display: block;
+                margin: 1rem auto;
+                max-width: 200px;
             }
             
             .section {
@@ -341,74 +229,14 @@
                 Emanuel<span class="ampersand">&</span>Yajnaseni
             </h1>
             <p class="subtitle">Two Hearts, Two Cultures, One Love Story</p>
+            <div class="hero-buttons">
+                <a href="pictures.html" class="hero-link">📸 View Our Journey</a>
+                <a href="rsvp.html" class="hero-link">💌 RSVP</a>
+            </div>
         </div>
         <div class="scroll-indicator">
             <div style="font-size: 2rem;">💕</div>
             <div style="font-size: 0.9rem; margin-top: 0.5rem;">Scroll to explore</div>
-        </div>
-    </section>
-
-    <!-- Our Story Section -->
-    <section class="section story-section">
-        <h2>Our Families</h2>
-        <div class="story-content">
-            <div class="story-text">
-                <img src="familyr.jpg" width=450cm>  
-            </div>
-            
-            <div class="story-text">
-                <img src="family.jpg" width=450cm>
-            </div>
-        </div>
-        <div class="timeline">
-            <div class="timeline-item">
-                <div class="timeline-date">2016</div>
-                <div class="timeline-event"><img src="2016.jpg" width="210cm"></div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-date">2017</div>
-                <div class="timeline-event"><img src="2017.jpg" width="290cm"></div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-date">2018</div>
-                <div class="timeline-event"><img src="2018.jpg" width="210cm"></div>
-            </div>
-        </div>
-        <div class="timeline">
-            <div class="timeline-item">
-                <div class="timeline-date">2019</div>
-                <div class="timeline-event"><img src="2019.jpg" width="210cm"></div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-date">2020</div>
-                <div class="timeline-event"><img src="2020.jpg" width="210cm"></div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-date">2021</div>
-                <div class="timeline-event"><img src="2021.jpg" width="210cm"></div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-date">2022</div>
-                <div class="timeline-event"><img src="2022.jpg" width="210cm"></div>
-            </div>
-        </div>
-        <div class="timeline">
-            <div class="timeline-item">
-                <div class="timeline-date">2023</div>
-                <div class="timeline-event"><img src="2023.jpg" width="210cm"></div>
-            </div>
-             <div class="timeline-item">
-                <div class="timeline-date">2024</div>
-                <div class="timeline-event"><img src="2024.jpg" width="210cm"></div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-date">2025</div>
-                <div class="timeline-event"><img src="copenhagen-tunnel.jpg" width="210cm"></div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-date">2026</div>
-                <div class="timeline-event"></div>
-            </div>
         </div>
     </section>
 
@@ -418,18 +246,18 @@
         <div>
             <ul>
                 <li>
-                   A <a href="https://www.youtube.com/watch?v=_PbK9nRMids&t=2807s"> vlog</a> about Kolkata toursim
+                   A <a href="https://www.youtube.com/watch?v=_PbK9nRMids&t=2807s" target="_blank">vlog</a> about Kolkata tourism
                 </li> 
                 <li>
-                 A  <a href="https://www.youtube.com/watch?v=k93eOY9GbRI">video</a> about why bangla sounds so sweet.
+                 A  <a href="https://www.youtube.com/watch?v=k93eOY9GbRI" target="_blank">video</a> about why Bangla sounds so sweet
                 </li>
             </ul>
         </div>
     </section>
 
-
     <!-- Footer -->
     <footer class="footer">
+        <div class="footer-hearts">💕</div>
         <p>Emanuel & Yajnaseni</p>
         <p style="opacity: 0.6; margin-top: 2rem; font-size: 0.9rem;">
             From Salt Lake City with love • Est. November 2016
