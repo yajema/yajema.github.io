@@ -1,479 +1,479 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Journey - Emanuel & Yajnaseni</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Georgia', serif;
-            line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            min-height: 100vh;
-        }
-
-        /* Password Screen Styles */
-        .password-screen {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            padding: 2rem;
-        }
-
-        .password-container {
-            background: white;
-            padding: 3rem;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
-            max-width: 400px;
-            width: 100%;
-            text-align: center;
-        }
-
-        .password-container h1 {
-            font-size: 2rem;
-            color: #667eea;
-            margin-bottom: 1rem;
-        }
-
-        .password-container p {
-            color: #666;
-            margin-bottom: 2rem;
-        }
-
-        .password-input {
-            width: 100%;
-            padding: 1rem;
-            font-size: 1.1rem;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            margin-bottom: 1rem;
-            transition: border-color 0.3s;
-        }
-
-        .password-input:focus {
-            outline: none;
-            border-color: #667eea;
-        }
-
-        .unlock-button {
-            width: 100%;
-            padding: 1rem;
-            font-size: 1.1rem;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: transform 0.2s;
-        }
-
-        .unlock-button:hover {
-            transform: translateY(-2px);
-        }
-
-        .error-message {
-            color: #e74c3c;
-            margin-top: 1rem;
-            font-size: 0.9rem;
-        }
-
-        /* Main Content Styles */
-        .main-content {
-            display: none;
-        }
-
-        .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 3rem 2rem;
-            text-align: center;
-            position: relative;
-        }
-
-        .header h1 {
-            font-size: 3rem;
-            font-weight: 300;
-            margin-bottom: 0.5rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-
-        .header p {
-            font-size: 1.2rem;
-            opacity: 0.9;
-        }
-
-        .back-link {
-            position: absolute;
-            top: 2rem;
-            left: 2rem;
-            color: white;
-            text-decoration: none;
-            padding: 0.75rem 1.5rem;
-            background: rgba(255,255,255,0.2);
-            border-radius: 50px;
-            border: 2px solid white;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-        }
-
-        .back-link:hover {
-            background: white;
-            color: #667eea;
-        }
-
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 4rem 2rem;
-        }
-
-        .family-section {
-            margin-bottom: 5rem;
-        }
-
-        .family-title {
-            text-align: center;
-            font-size: 2.5rem;
-            color: #2c3e50;
-            margin-bottom: 3rem;
-            position: relative;
-        }
-
-        .family-title::after {
-            content: '';
-            display: block;
-            width: 100px;
-            height: 3px;
-            background: linear-gradient(90deg, #667eea, #764ba2);
-            margin: 1rem auto;
-            border-radius: 2px;
-        }
-
-        .family-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            margin-bottom: 4rem;
-        }
-
-        .family-photo {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .family-photo:hover {
-            transform: translateY(-5px);
-        }
-
-        .family-photo img {
-            width: 100%;
-            height: auto;
-            border-radius: 10px;
-            display: block;
-        }
-
-        .timeline-section {
-            margin-top: 4rem;
-        }
-
-        .timeline-title {
-            text-align: center;
-            font-size: 2.5rem;
-            color: #2c3e50;
-            margin-bottom: 3rem;
-            position: relative;
-        }
-
-        .timeline-title::after {
-            content: '';
-            display: block;
-            width: 100px;
-            height: 3px;
-            background: linear-gradient(90deg, #667eea, #764ba2);
-            margin: 1rem auto;
-            border-radius: 2px;
-        }
-
-        .timeline-row {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .timeline-item {
-            background: white;
-            border-radius: 15px;
-            padding: 1.5rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .timeline-item:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
-        }
-
-        .timeline-date {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #667eea;
-            margin-bottom: 1rem;
-            text-align: center;
-        }
-
-        .timeline-image {
-            width: 100%;
-            height: auto;
-            border-radius: 10px;
-            display: block;
-        }
-
-        .timeline-item.empty {
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
-            border: 2px dashed #667eea;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 200px;
-        }
-
-        .timeline-item.empty .timeline-date {
-            color: #999;
-        }
-
-        .empty-message {
-            text-align: center;
-            color: #999;
-            font-style: italic;
-            font-size: 1.1rem;
-        }
-
-        .footer {
-            background: #2c3e50;
-            color: white;
-            text-align: center;
-            padding: 3rem 2rem;
-            margin-top: 4rem;
-        }
-
-        .footer-hearts {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            animation: heartbeat 1.5s ease-in-out infinite;
-        }
-
-        @keyframes heartbeat {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-        }
-
-        @media (max-width: 968px) {
-            .family-grid {
-                grid-template-columns: 1fr;
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Our Journey - Emanuel & Yajnaseni</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
             }
 
-            .header h1 {
+            body {
+                font-family: 'Georgia', serif;
+                line-height: 1.6;
+                color: #333;
+                background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+                min-height: 100vh;
+            }
+
+            /* Password Screen Styles */
+            .password-screen {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                min-height: 100vh;
+                padding: 2rem;
+            }
+
+            .password-container {
+                background: white;
+                padding: 3rem;
+                border-radius: 20px;
+                box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+                max-width: 400px;
+                width: 100%;
+                text-align: center;
+            }
+
+            .password-container h1 {
                 font-size: 2rem;
-            }
-
-            .back-link {
-                position: static;
-                display: inline-block;
+                color: #667eea;
                 margin-bottom: 1rem;
             }
 
-            .timeline-row {
-                grid-template-columns: 1fr;
+            .password-container p {
+                color: #666;
+                margin-bottom: 2rem;
             }
-        }
-    </style>
-</head>
-<body>
-    <!-- Password Screen -->
-    <div class="password-screen" id="passwordScreen">
-        <div class="password-container">
-            <h1>🔒 Private Gallery</h1>
-            <p>Please enter the password to view our journey</p>
-            <input 
-                type="password" 
-                id="passwordInput" 
-                class="password-input" 
-                placeholder="Enter password"
-                autocomplete="off"
-            >
-            <button class="unlock-button" onclick="checkPassword()">Unlock</button>
-            <div class="error-message" id="errorMessage"></div>
+
+            .password-input {
+                width: 100%;
+                padding: 1rem;
+                font-size: 1.1rem;
+                border: 2px solid #e0e0e0;
+                border-radius: 10px;
+                margin-bottom: 1rem;
+                transition: border-color 0.3s;
+            }
+
+            .password-input:focus {
+                outline: none;
+                border-color: #667eea;
+            }
+
+            .unlock-button {
+                width: 100%;
+                padding: 1rem;
+                font-size: 1.1rem;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                color: white;
+                border: none;
+                border-radius: 10px;
+                cursor: pointer;
+                transition: transform 0.2s;
+            }
+
+            .unlock-button:hover {
+                transform: translateY(-2px);
+            }
+
+            .error-message {
+                color: #e74c3c;
+                margin-top: 1rem;
+                font-size: 0.9rem;
+            }
+
+            /* Main Content Styles */
+            .main-content {
+                display: none;
+            }
+
+            .header {
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                color: white;
+                padding: 3rem 2rem;
+                text-align: center;
+                position: relative;
+            }
+
+            .header h1 {
+                font-size: 3rem;
+                font-weight: 300;
+                margin-bottom: 0.5rem;
+                text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            }
+
+            .header p {
+                font-size: 1.2rem;
+                opacity: 0.9;
+            }
+
+            .back-link {
+                position: absolute;
+                top: 2rem;
+                left: 2rem;
+                color: white;
+                text-decoration: none;
+                padding: 0.75rem 1.5rem;
+                background: rgba(255,255,255,0.2);
+                border-radius: 50px;
+                border: 2px solid white;
+                transition: all 0.3s ease;
+                backdrop-filter: blur(10px);
+            }
+
+            .back-link:hover {
+                background: white;
+                color: #667eea;
+            }
+
+            .container {
+                max-width: 1400px;
+                margin: 0 auto;
+                padding: 4rem 2rem;
+            }
+
+            .family-section {
+                margin-bottom: 5rem;
+            }
+
+            .family-title {
+                text-align: center;
+                font-size: 2.5rem;
+                color: #2c3e50;
+                margin-bottom: 3rem;
+                position: relative;
+            }
+
+            .family-title::after {
+                content: '';
+                display: block;
+                width: 100px;
+                height: 3px;
+                background: linear-gradient(90deg, #667eea, #764ba2);
+                margin: 1rem auto;
+                border-radius: 2px;
+            }
+
+            .family-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 3rem;
+                margin-bottom: 4rem;
+            }
+
+            .family-photo {
+                background: white;
+                padding: 1.5rem;
+                border-radius: 20px;
+                box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+                transition: transform 0.3s ease;
+            }
+
+            .family-photo:hover {
+                transform: translateY(-5px);
+            }
+
+            .family-photo img {
+                width: 100%;
+                height: auto;
+                border-radius: 10px;
+                display: block;
+            }
+
+            .timeline-section {
+                margin-top: 4rem;
+            }
+
+            .timeline-title {
+                text-align: center;
+                font-size: 2.5rem;
+                color: #2c3e50;
+                margin-bottom: 3rem;
+                position: relative;
+            }
+
+            .timeline-title::after {
+                content: '';
+                display: block;
+                width: 100px;
+                height: 3px;
+                background: linear-gradient(90deg, #667eea, #764ba2);
+                margin: 1rem auto;
+                border-radius: 2px;
+            }
+
+            .timeline-row {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 2rem;
+                margin-bottom: 2rem;
+            }
+
+            .timeline-item {
+                background: white;
+                border-radius: 15px;
+                padding: 1.5rem;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+
+            .timeline-item:hover {
+                transform: translateY(-8px);
+                box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            }
+
+            .timeline-date {
+                font-size: 1.5rem;
+                font-weight: bold;
+                color: #667eea;
+                margin-bottom: 1rem;
+                text-align: center;
+            }
+
+            .timeline-image {
+                width: 100%;
+                height: auto;
+                border-radius: 10px;
+                display: block;
+            }
+
+            .timeline-item.empty {
+                background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+                border: 2px dashed #667eea;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                min-height: 200px;
+            }
+
+            .timeline-item.empty .timeline-date {
+                color: #999;
+            }
+
+            .empty-message {
+                text-align: center;
+                color: #999;
+                font-style: italic;
+                font-size: 1.1rem;
+            }
+
+            .footer {
+                background: #2c3e50;
+                color: white;
+                text-align: center;
+                padding: 3rem 2rem;
+                margin-top: 4rem;
+            }
+
+            .footer-hearts {
+                font-size: 2rem;
+                margin-bottom: 1rem;
+                animation: heartbeat 1.5s ease-in-out infinite;
+            }
+
+            @keyframes heartbeat {
+                0% { transform: scale(1); }
+                50% { transform: scale(1.1); }
+                100% { transform: scale(1); }
+            }
+
+            @media (max-width: 968px) {
+                .family-grid {
+                    grid-template-columns: 1fr;
+                }
+
+                .header h1 {
+                    font-size: 2rem;
+                }
+
+                .back-link {
+                    position: static;
+                    display: inline-block;
+                    margin-bottom: 1rem;
+                }
+
+                .timeline-row {
+                    grid-template-columns: 1fr;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Password Screen -->
+        <div class="password-screen" id="passwordScreen">
+            <div class="password-container">
+                <h1>🔒 Private Gallery</h1>
+                <p>Please enter the password to view our journey</p>
+                <input 
+                    type="password" 
+                    id="passwordInput" 
+                    class="password-input" 
+                    placeholder="Enter password"
+                    autocomplete="off"
+                >
+                <button class="unlock-button" onclick="checkPassword()">Unlock</button>
+                <div class="error-message" id="errorMessage"></div>
+            </div>
         </div>
-    </div>
 
-    <!-- Main Content (hidden until unlocked) -->
-    <div class="main-content" id="mainContent">
-        <header class="header">
-            <a href="index.html" class="back-link">← Back to Home</a>
-            <h1>Our Journey Together</h1>
-            <p>A visual story of our love through the years</p>
-        </header>
+        <!-- Main Content (hidden until unlocked) -->
+        <div class="main-content" id="mainContent">
+            <header class="header">
+                <a href="index.html" class="back-link">← Back to Home</a>
+                <h1>Our Journey Together</h1>
+                <p>A visual story of our love through the years</p>
+            </header>
 
-        <div class="container">
-            <!-- Family Section -->
-            <section class="family-section">
-                <h2 class="family-title">Our Families</h2>
-                <div class="family-grid">
-                    <div class="family-photo">
-                        <img data-encrypted="U2FsdGVkX1+xQvF8fK3hG7mVJc8=" alt="Family photo 1">
-                    </div>
-                    <div class="family-photo">
-                        <img data-encrypted="U2FsdGVkX19TZW1pL2VkQmF0Y2g=" alt="Family photo 2">
-                    </div>
-                </div>
-            </section>
-
-            <!-- Timeline Section -->
-            <section class="timeline-section">
-                <h2 class="timeline-title">Through The Years</h2>
-                
-                <div class="timeline-row">
-                    <div class="timeline-item">
-                        <div class="timeline-date">2016</div>
-                        <img data-encrypted="U2FsdGVkX18yMDE2LmpwZw==" alt="2016 memory" class="timeline-image">
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-date">2017</div>
-                        <img data-encrypted="U2FsdGVkX18yMDE3LmpwZw==" alt="2017 memory" class="timeline-image">
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-date">2018</div>
-                        <img data-encrypted="U2FsdGVkX18yMDE4LmpwZw==" alt="2018 memory" class="timeline-image">
-                    </div>
-                </div>
-
-                <div class="timeline-row">
-                    <div class="timeline-item">
-                        <div class="timeline-date">2019</div>
-                        <img data-encrypted="U2FsdGVkX18yMDE5LmpwZw==" alt="2019 memory" class="timeline-image">
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-date">2020</div>
-                        <img data-encrypted="U2FsdGVkX18yMDIwLmpwZw==" alt="2020 memory" class="timeline-image">
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-date">2021</div>
-                        <img data-encrypted="U2FsdGVkX18yMDIxLmpwZw==" alt="2021 memory" class="timeline-image">
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-date">2022</div>
-                        <img data-encrypted="U2FsdGVkX18yMDIyLmpwZw==" alt="2022 memory" class="timeline-image">
-                    </div>
-                </div>
-
-                <div class="timeline-row">
-                    <div class="timeline-item">
-                        <div class="timeline-date">2023</div>
-                        <img data-encrypted="U2FsdGVkX18yMDIzLmpwZw==" alt="2023 memory" class="timeline-image">
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-date">2024</div>
-                        <img data-encrypted="U2FsdGVkX18yMDI0LmpwZw==" alt="2024 memory" class="timeline-image">
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-date">2025</div>
-                        <img data-encrypted="U2FsdGVkX19jb3BlbmhhZ2VuLXR1bm5lbC5qcGc=" alt="2025 memory" class="timeline-image">
-                    </div>
-                    <div class="timeline-item empty">
-                        <div>
-                            <div class="timeline-date">2026</div>
-                            <div class="empty-message">Our next chapter begins... 💕</div>
+            <div class="container">
+                <!-- Family Section -->
+                <section class="family-section">
+                    <h2 class="family-title">Our Families</h2>
+                    <div class="family-grid">
+                        <div class="family-photo">
+                            <img data-encrypted="U2FsdGVkX1+xQvF8fK3hG7mVJc8=" alt="Family photo 1">
+                        </div>
+                        <div class="family-photo">
+                            <img data-encrypted="U2FsdGVkX19TZW1pL2VkQmF0Y2g=" alt="Family photo 2">
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
+
+                <!-- Timeline Section -->
+                <section class="timeline-section">
+                    <h2 class="timeline-title">Through The Years</h2>
+                    
+                    <div class="timeline-row">
+                        <div class="timeline-item">
+                            <div class="timeline-date">2016</div>
+                            <img data-encrypted="U2FsdGVkX18yMDE2LmpwZw==" alt="2016 memory" class="timeline-image">
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">2017</div>
+                            <img data-encrypted="U2FsdGVkX18yMDE3LmpwZw==" alt="2017 memory" class="timeline-image">
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">2018</div>
+                            <img data-encrypted="U2FsdGVkX18yMDE4LmpwZw==" alt="2018 memory" class="timeline-image">
+                        </div>
+                    </div>
+
+                    <div class="timeline-row">
+                        <div class="timeline-item">
+                            <div class="timeline-date">2019</div>
+                            <img data-encrypted="U2FsdGVkX18yMDE5LmpwZw==" alt="2019 memory" class="timeline-image">
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">2020</div>
+                            <img data-encrypted="U2FsdGVkX18yMDIwLmpwZw==" alt="2020 memory" class="timeline-image">
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">2021</div>
+                            <img data-encrypted="U2FsdGVkX18yMDIxLmpwZw==" alt="2021 memory" class="timeline-image">
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">2022</div>
+                            <img data-encrypted="U2FsdGVkX18yMDIyLmpwZw==" alt="2022 memory" class="timeline-image">
+                        </div>
+                    </div>
+
+                    <div class="timeline-row">
+                        <div class="timeline-item">
+                            <div class="timeline-date">2023</div>
+                            <img data-encrypted="U2FsdGVkX18yMDIzLmpwZw==" alt="2023 memory" class="timeline-image">
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">2024</div>
+                            <img data-encrypted="U2FsdGVkX18yMDI0LmpwZw==" alt="2024 memory" class="timeline-image">
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">2025</div>
+                            <img data-encrypted="U2FsdGVkX19jb3BlbmhhZ2VuLXR1bm5lbC5qcGc=" alt="2025 memory" class="timeline-image">
+                        </div>
+                        <div class="timeline-item empty">
+                            <div>
+                                <div class="timeline-date">2026</div>
+                                <div class="empty-message">Our next chapter begins... 💕</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <footer class="footer">
+                <div class="footer-hearts">💕</div>
+                <p>Emanuel & Yajnaseni</p>
+                <p style="opacity: 0.6; margin-top: 2rem; font-size: 0.9rem;">
+                    From Salt Lake City with love • Est. November 2016
+                </p>
+            </footer>
         </div>
 
-        <footer class="footer">
-            <div class="footer-hearts">💕</div>
-            <p>Emanuel & Yajnaseni</p>
-            <p style="opacity: 0.6; margin-top: 2rem; font-size: 0.9rem;">
-                From Salt Lake City with love • Est. November 2016
-            </p>
-        </footer>
-    </div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
-    <script>
-        // Set your password here
-        const CORRECT_PASSWORD = 'ourlove2016';
-        
-        // Encrypted image paths (you'll need to replace these with actual encrypted values)
-        const encryptedImages = {
-            'U2FsdGVkX1+xQvF8fK3hG7mVJc8=': 'familyr.jpg',
-            'U2FsdGVkX19TZW1pL2VkQmF0Y2g=': 'family.jpg',
-            'U2FsdGVkX18yMDE2LmpwZw==': '2016.jpg',
-            'U2FsdGVkX18yMDE3LmpwZw==': '2017.jpg',
-            'U2FsdGVkX18yMDE4LmpwZw==': '2018.jpg',
-            'U2FsdGVkX18yMDE5LmpwZw==': '2019.jpg',
-            'U2FsdGVkX18yMDIwLmpwZw==': '2020.jpg',
-            'U2FsdGVkX18yMDIxLmpwZw==': '2021.jpg',
-            'U2FsdGVkX18yMDIyLmpwZw==': '2022.jpg',
-            'U2FsdGVkX18yMDIzLmpwZw==': '2023.jpg',
-            'U2FsdGVkX18yMDI0LmpwZw==': '2024.jpg',
-            'U2FsdGVkX19jb3BlbmhhZ2VuLXR1bm5lbC5qcGc=': 'copenhagen-tunnel.jpg'
-        };
-
-        function checkPassword() {
-            const input = document.getElementById('passwordInput');
-            const password = input.value;
-            const errorMsg = document.getElementById('errorMessage');
-
-            if (password === CORRECT_PASSWORD) {
-                // Decrypt and load images
-                loadImages(password);
-                
-                // Hide password screen and show content
-                document.getElementById('passwordScreen').style.display = 'none';
-                document.getElementById('mainContent').style.display = 'block';
-                
-                errorMsg.textContent = '';
-            } else {
-                errorMsg.textContent = 'Incorrect password. Please try again.';
-                input.value = '';
-            }
-        }
-
-        function loadImages(password) {
-            const images = document.querySelectorAll('img[data-encrypted]');
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+        <script>
+            // Set your password here
+            const CORRECT_PASSWORD = 'ourlove2016';
             
-            images.forEach(img => {
-                const encryptedPath = img.getAttribute('data-encrypted');
-                const decryptedPath = encryptedImages[encryptedPath];
-                
-                if (decryptedPath) {
-                    img.src = decryptedPath;
-                }
-            });
-        }
+            // Encrypted image paths (you'll need to replace these with actual encrypted values)
+            const encryptedImages = {
+                'U2FsdGVkX1+xQvF8fK3hG7mVJc8=': 'familyr.jpg',
+                'U2FsdGVkX19TZW1pL2VkQmF0Y2g=': 'family.jpg',
+                'U2FsdGVkX18yMDE2LmpwZw==': '2016.jpg',
+                'U2FsdGVkX18yMDE3LmpwZw==': '2017.jpg',
+                'U2FsdGVkX18yMDE4LmpwZw==': '2018.jpg',
+                'U2FsdGVkX18yMDE5LmpwZw==': '2019.jpg',
+                'U2FsdGVkX18yMDIwLmpwZw==': '2020.jpg',
+                'U2FsdGVkX18yMDIxLmpwZw==': '2021.jpg',
+                'U2FsdGVkX18yMDIyLmpwZw==': '2022.jpg',
+                'U2FsdGVkX18yMDIzLmpwZw==': '2023.jpg',
+                'U2FsdGVkX18yMDI0LmpwZw==': '2024.jpg',
+                'U2FsdGVkX19jb3BlbmhhZ2VuLXR1bm5lbC5qcGc=': 'copenhagen-tunnel.jpg'
+            };
 
-        // Allow Enter key to submit password
-        document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('passwordInput').addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    checkPassword();
+            function checkPassword() {
+                const input = document.getElementById('passwordInput');
+                const password = input.value;
+                const errorMsg = document.getElementById('errorMessage');
+
+                if (password === CORRECT_PASSWORD) {
+                    // Decrypt and load images
+                    loadImages(password);
+                    
+                    // Hide password screen and show content
+                    document.getElementById('passwordScreen').style.display = 'none';
+                    document.getElementById('mainContent').style.display = 'block';
+                    
+                    errorMsg.textContent = '';
+                } else {
+                    errorMsg.textContent = 'Incorrect password. Please try again.';
+                    input.value = '';
                 }
+            }
+
+            function loadImages(password) {
+                const images = document.querySelectorAll('img[data-encrypted]');
+                
+                images.forEach(img => {
+                    const encryptedPath = img.getAttribute('data-encrypted');
+                    const decryptedPath = encryptedImages[encryptedPath];
+                    
+                    if (decryptedPath) {
+                        img.src = decryptedPath;
+                    }
+                });
+            }
+
+            // Allow Enter key to submit password
+            document.addEventListener('DOMContentLoaded', function() {
+                document.getElementById('passwordInput').addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        checkPassword();
+                    }
+                });
             });
-        });
-    </script>
-</body>
-</html>
+        </script>
+    </body>
+    </html>
