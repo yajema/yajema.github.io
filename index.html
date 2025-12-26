@@ -14,24 +14,30 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-
-       <!--         body {
             font-family: 'Georgia', serif;
             line-height: 1.6;
             color: #333;
             overflow-x: hidden;
-        } -->
+        }
 
-        /* Login container styles */
+        /* ========================================
+           LOGIN SCREEN STYLES
+           ======================================== */
         .login-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            padding: 20px;
+        }
+
+        .login-box {
             background: white;
             padding: 40px;
             border-radius: 10px;
@@ -40,13 +46,14 @@
             width: 100%;
         }
 
-        .login-container h1 {
+        .login-box h1 {
             color: #333;
             margin-bottom: 10px;
             font-size: 28px;
+            font-family: 'Georgia', serif;
         }
 
-        .login-container p {
+        .login-box p {
             color: #666;
             margin-bottom: 30px;
         }
@@ -55,14 +62,14 @@
             margin-bottom: 20px;
         }
 
-        label {
+        .form-group label {
             display: block;
             margin-bottom: 8px;
             color: #333;
             font-weight: 500;
         }
 
-        input[type="password"] {
+        .form-group input[type="password"] {
             width: 100%;
             padding: 12px;
             border: 2px solid #ddd;
@@ -71,12 +78,12 @@
             transition: border-color 0.3s;
         }
 
-        input[type="password"]:focus {
+        .form-group input[type="password"]:focus {
             outline: none;
             border-color: #667eea;
         }
 
-        button {
+        .login-btn {
             width: 100%;
             padding: 12px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -89,11 +96,11 @@
             transition: transform 0.2s;
         }
 
-        button:hover {
+        .login-btn:hover {
             transform: translateY(-2px);
         }
 
-        button:active {
+        .login-btn:active {
             transform: translateY(0);
         }
 
@@ -108,11 +115,25 @@
             display: block;
         }
 
-        /* Main website styles */
+        /* Hide login when authenticated */
+        .login-container.hidden {
+            display: none;
+        }
 
-          .hero {
+        /* ========================================
+           WEDDING WEBSITE STYLES
+           ======================================== */
+        .wedding-content {
+            display: none;
+        }
+
+        .wedding-content.show {
+            display: block;
+        }
+
+        .hero {
             height: 100vh;
-            background:  #5e74d2;
+            background: #5e74d2;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -127,7 +148,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background:  #5e74d2;
+            background: #5e74d2;
             animation: float 20s ease-in-out infinite;
         }
 
@@ -311,124 +332,94 @@
                 padding: 4rem 1rem;
             }
         }
-
-        /* Protected content styles */
-        .protected-content {
-            display: none;
-            background: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            max-width: 800px;
-            width: 100%;
-        }
-
-        .protected-content.show {
-            display: block;
-        }
-
-        .protected-content h1 {
-            color: #333;
-            margin-bottom: 20px;
-        }
-
-        .protected-content p {
-            color: #666;
-            line-height: 1.6;
-            margin-bottom: 15px;
-        }
-
-        .logout-btn {
-            margin-top: 30px;
-            width: auto;
-            padding: 10px 30px;
-        }
-
-        .content-image {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-            margin: 20px 0;
-        }
     </style>
 </head>
 <body>
-    <!-- Login Form -->
+    <!-- ========================================
+         LOGIN SCREEN
+         ======================================== -->
     <div class="login-container" id="loginContainer">
-        <h1>🔒 Protected Access</h1>
-        <p>Please enter your password to continue</p>
-        <form id="loginForm">
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input 
-                    type="password" 
-                    id="password" 
-                    name="password" 
-                    placeholder="Enter password"
-                    autocomplete="off"
-                    required
-                >
-            </div>
-            <button type="submit">Access Content</button>
-            <div class="error-message" id="errorMessage">
-                Incorrect password. Please try again.
-            </div>
-        </form>
+        <div class="login-box">
+            <h1>🔒 Welcome</h1>
+            <p>Please enter your password to view our wedding website</p>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input 
+                        type="password" 
+                        id="password" 
+                        name="password" 
+                        placeholder="Enter password"
+                        autocomplete="off"
+                        required
+                    >
+                </div>
+                <button type="submit" class="login-btn">Access Wedding Site</button>
+                <div class="error-message" id="errorMessage">
+                    Incorrect password. Please try again.
+                </div>
+            </form>
+        </div>
     </div>
 
-    <!-- Protected Content (hidden by default). Yes, we know it's not very secure :) -->
- <!-- Hero Section -->
- <!--   <section class="hero"> -->
-        <div class="hero-content">
-            <h1 class="couple-names">
-                Emanuel<span class="ampersand">&</span>Yajnaseni
-            </h1>
-           <!---- <p class="subtitle">Two Hearts, Two Cultures, One Love Story</p>-->
-            <div class="hero-buttons">
-                <a href="pictures.html" class="hero-link">📸 Our Journey</a>
-                <a href="rsvp.html" class="hero-link">💌 RSVP</a>
-                <a href="registry.html" class="hero-link">🎁 Registry</a>
+    <!-- ========================================
+         WEDDING WEBSITE CONTENT
+         ======================================== -->
+    <div class="wedding-content" id="weddingContent">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1 class="couple-names">
+                    Emanuel<span class="ampersand">&</span>Yajnaseni
+                </h1>
+                <div class="hero-buttons">
+                    <a href="pictures.html" class="hero-link">📸 Our Journey</a>
+                    <a href="rsvp.html" class="hero-link">💌 RSVP</a>
+                    <a href="registry.html" class="hero-link">🎁 Registry</a>
+                </div>
             </div>
-        </div>
-        <div class="scroll-indicator">
-            <div style="font-size: 0.9rem; margin-top: 0.5rem;">Prepare for the trip to India</div>
-        </div>
-    </section>
+            <div class="scroll-indicator">
+                <div style="font-size: 0.9rem; margin-top: 0.5rem;">Prepare for the trip to India</div>
+            </div>
+        </section>
 
-    <!-- Cultural Heritage Section -->
-    <section class="section cultural-section">
-        <h2>Explore Kolkata</h2>
-        <div>
-            <ul>
-                <li>
-                   A <a href="https://www.youtube.com/watch?v=_PbK9nRMids&t=2807s" target="_blank">vlog</a> about Kolkata tourism
-                </li> 
-                <li>
-                 A  <a href="https://www.youtube.com/watch?v=k93eOY9GbRI" target="_blank">video</a> about why Bangla sounds so sweet
-                </li>
-                <li><a href="dosndons.html">Dos and Don'ts for first trip to India
-                </a></li>
-            </ul>
-        </div>
-    </section>
+        <!-- Cultural Heritage Section -->
+        <section class="section cultural-section">
+            <h2>Explore Kolkata</h2>
+            <div>
+                <ul>
+                    <li>
+                       A <a href="https://www.youtube.com/watch?v=_PbK9nRMids&t=2807s" target="_blank">vlog</a> about Kolkata tourism
+                    </li> 
+                    <li>
+                     A  <a href="https://www.youtube.com/watch?v=k93eOY9GbRI" target="_blank">video</a> about why Bangla sounds so sweet
+                    </li>
+                    <li><a href="dosndons.html">Dos and Don'ts for first trip to India
+                    </a></li>
+                </ul>
+            </div>
+        </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-hearts">💕</div>
-        <p>Emanuel & Yajnaseni</p>
-        <p style="opacity: 0.6; margin-top: 2rem; font-size: 0.9rem;">
-            From Salt Lake City with love • Est. November 2016
-        </p>
-    </footer>
-        
-        <button class="logout-btn" onclick="logout()">Logout</button>
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-hearts">💕</div>
+            <p>Emanuel & Yajnaseni</p>
+            <p style="opacity: 0.6; margin-top: 2rem; font-size: 0.9rem;">
+                From Salt Lake City with love • Est. November 2016
+            </p>
+        </footer>
     </div>
 
+    <!-- ========================================
+         PASSWORD PROTECTION JAVASCRIPT
+         ======================================== -->
     <script>
+        // Security: Password hashes (SHA-256) for "Emanuel", "Yajnaseni", and "Yagna"
+        // These are pre-computed hashes to avoid storing plain text passwords
         const validPasswordHashes = [
-            'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', 
-            '0f86b06c8c5fb46c5c2a9d661e01f65f35b03dbdaee8be7cfa8e9db2b14b6517', 
-            'ac885af29df8891c9ccf02cd7e0f188c63b2e017eb0f2ef06a9cb15d77f7dd7c' 
+            'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', // Emanuel
+            '0f86b06c8c5fb46c5c2a9d661e01f65f35b03dbdaee8be7cfa8e9db2b14b6517', // Yajnaseni
+            'ac885af29df8891c9ccf02cd7e0f188c63b2e017eb0f2ef06a9cb15d77f7dd7c'  // Yagna
         ];
 
         // Track authentication state in memory (not persistent)
@@ -459,20 +450,20 @@
         }
 
         /**
-         * Shows the protected content and hides the login form
+         * Shows the wedding website and hides the login form
          */
-        function showProtectedContent() {
-            document.getElementById('loginContainer').style.display = 'none';
-            document.getElementById('protectedContent').classList.add('show');
+        function showWeddingContent() {
+            document.getElementById('loginContainer').classList.add('hidden');
+            document.getElementById('weddingContent').classList.add('show');
             isAuthenticated = true;
         }
 
         /**
-         * Shows the login form and hides the protected content
+         * Shows the login form and hides the wedding website
          */
         function showLoginForm() {
-            document.getElementById('loginContainer').style.display = 'block';
-            document.getElementById('protectedContent').classList.remove('show');
+            document.getElementById('loginContainer').classList.remove('hidden');
+            document.getElementById('weddingContent').classList.remove('show');
             document.getElementById('password').value = '';
             document.getElementById('errorMessage').classList.remove('show');
             isAuthenticated = false;
@@ -491,9 +482,9 @@
             const isValid = await verifyPassword(password);
             
             if (isValid) {
-                // Password correct - show content
+                // Password correct - show wedding content
                 errorMessage.classList.remove('show');
-                showProtectedContent();
+                showWeddingContent();
             } else {
                 // Password incorrect - show error
                 errorMessage.classList.add('show');
@@ -502,14 +493,7 @@
             }
         });
 
-        /**
-         * Logs out the user and returns to login screen
-         */
-        function logout() {
-            showLoginForm();
-        }
-
-        // Prevent back button from revealing content after logout
+        // Prevent back button from revealing content after session ends
         window.addEventListener('pageshow', function(event) {
             if (event.persisted || (window.performance && window.performance.navigation.type === 2)) {
                 if (!isAuthenticated) {
