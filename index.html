@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- This meta tag prevents search engines from indexing this page -->
+    <meta name="robots" content="noindex, nofollow">
     <title>Emanuel & Yajnaseni - Our Wedding</title>
     <style>
         * {
@@ -12,13 +14,103 @@
         }
 
         body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+       <!--         body {
             font-family: 'Georgia', serif;
             line-height: 1.6;
             color: #333;
             overflow-x: hidden;
+        } -->
+
+        /* Login container styles */
+        .login-container {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 400px;
+            width: 100%;
         }
 
-        .hero {
+        .login-container h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+
+        .login-container p {
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 500;
+        }
+
+        input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        input[type="password"]:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .error-message {
+            color: #e74c3c;
+            margin-top: 10px;
+            font-size: 14px;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        /* Main website styles */
+
+          .hero {
             height: 100vh;
             background:  #5e74d2;
             display: flex;
@@ -219,10 +311,73 @@
                 padding: 4rem 1rem;
             }
         }
+
+        /* Protected content styles */
+        .protected-content {
+            display: none;
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 800px;
+            width: 100%;
+        }
+
+        .protected-content.show {
+            display: block;
+        }
+
+        .protected-content h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .protected-content p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .logout-btn {
+            margin-top: 30px;
+            width: auto;
+            padding: 10px 30px;
+        }
+
+        .content-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
     </style>
 </head>
 <body>
-    <!-- Hero Section -->
+    <!-- Login Form -->
+    <div class="login-container" id="loginContainer">
+        <h1>🔒 Protected Access</h1>
+        <p>Please enter your password to continue</p>
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input 
+                    type="password" 
+                    id="password" 
+                    name="password" 
+                    placeholder="Enter password"
+                    autocomplete="off"
+                    required
+                >
+            </div>
+            <button type="submit">Access Content</button>
+            <div class="error-message" id="errorMessage">
+                Incorrect password. Please try again.
+            </div>
+        </form>
+    </div>
+
+    <!-- Protected Content (hidden by default). Yes, we know it's not very secure :) -->
+ <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
             <h1 class="couple-names">
@@ -265,6 +420,103 @@
             From Salt Lake City with love • Est. November 2016
         </p>
     </footer>
+        
+        <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
 
+    <script>
+        const validPasswordHashes = [
+            'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', 
+            '0f86b06c8c5fb46c5c2a9d661e01f65f35b03dbdaee8be7cfa8e9db2b14b6517', 
+            'ac885af29df8891c9ccf02cd7e0f188c63b2e017eb0f2ef06a9cb15d77f7dd7c' 
+        ];
+
+        // Track authentication state in memory (not persistent)
+        let isAuthenticated = false;
+
+        /**
+         * Hashes a password using SHA-256
+         * @param {string} password - The password to hash
+         * @returns {Promise<string>} The hexadecimal hash string
+         */
+        async function hashPassword(password) {
+            const encoder = new TextEncoder();
+            const data = encoder.encode(password);
+            const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+            return hashHex;
+        }
+
+        /**
+         * Verifies if the provided password matches any valid password
+         * @param {string} password - The password to verify
+         * @returns {Promise<boolean>} True if password is valid
+         */
+        async function verifyPassword(password) {
+            const hash = await hashPassword(password);
+            return validPasswordHashes.includes(hash);
+        }
+
+        /**
+         * Shows the protected content and hides the login form
+         */
+        function showProtectedContent() {
+            document.getElementById('loginContainer').style.display = 'none';
+            document.getElementById('protectedContent').classList.add('show');
+            isAuthenticated = true;
+        }
+
+        /**
+         * Shows the login form and hides the protected content
+         */
+        function showLoginForm() {
+            document.getElementById('loginContainer').style.display = 'block';
+            document.getElementById('protectedContent').classList.remove('show');
+            document.getElementById('password').value = '';
+            document.getElementById('errorMessage').classList.remove('show');
+            isAuthenticated = false;
+        }
+
+        /**
+         * Handles the login form submission
+         */
+        document.getElementById('loginForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const password = document.getElementById('password').value;
+            const errorMessage = document.getElementById('errorMessage');
+            
+            // Verify password
+            const isValid = await verifyPassword(password);
+            
+            if (isValid) {
+                // Password correct - show content
+                errorMessage.classList.remove('show');
+                showProtectedContent();
+            } else {
+                // Password incorrect - show error
+                errorMessage.classList.add('show');
+                document.getElementById('password').value = '';
+                document.getElementById('password').focus();
+            }
+        });
+
+        /**
+         * Logs out the user and returns to login screen
+         */
+        function logout() {
+            showLoginForm();
+        }
+
+        // Prevent back button from revealing content after logout
+        window.addEventListener('pageshow', function(event) {
+            if (event.persisted || (window.performance && window.performance.navigation.type === 2)) {
+                if (!isAuthenticated) {
+                    showLoginForm();
+                }
+            }
+        });
+    </script>
 </body>
 </html>
