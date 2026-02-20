@@ -1,270 +1,165 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Emanuel & Yajnaseni - Our Wedding</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Georgia', serif;
-            line-height: 1.6;
-            color: #333;
-            overflow-x: hidden;
-        }
-
-        .hero {
-            height: 100vh;
-            background:  #5e74d2;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background:  #5e74d2;
-            animation: float 20s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-        }
-
-        .hero-content {
-            text-align: center;
-            color: white;
-            z-index: 2;
-            position: relative;
-        }
-
-        .couple-names {
-            font-size: 4rem;
-            font-weight: 300;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            animation: fadeInUp 1s ease-out;
-        }
-
-        .ampersand {
-            font-size: 3rem;
-            margin: 0 2rem;
-            opacity: 0.8;
-        }
-
-        .subtitle {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-            animation: fadeInUp 1s ease-out 0.5s both;
-        }
-
-        .hero-buttons {
-            margin-top: 2rem;
-            animation: fadeInUp 1s ease-out 1s both;
-        }
-
-        .hero-link {
-            display: inline-block;
-            padding: 1rem 2.5rem;
-            margin: 0 1rem;
-            background: rgba(255,255,255,0.2);
-            color: white;
-            text-decoration: none;
-            border: 2px solid white;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-        }
-
-        .hero-link:hover {
-            background: white;
-            color: #667eea;
-            transform: translateY(-2px);
-        }
-
-        .scroll-indicator {
-            position: absolute;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%);
-            color: white;
-            animation: bounce 2s infinite;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
-            40% { transform: translateX(-50%) translateY(-10px); }
-            60% { transform: translateX(-50%) translateY(-5px); }
-        }
-
-        .section {
-            padding: 6rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            color: #2c3e50;
-            position: relative;
-        }
-
-        .section h2::after {
-            content: '';
-            display: block;
-            width: 100px;
-            height: 3px;
-            background: linear-gradient(90deg, #667eea, #764ba2);
-            margin: 1rem auto;
-            border-radius: 2px;
-        }
-
-        .cultural-section {
-            background: white;
-        }
-
-        .cultural-section ul {
-            max-width: 600px;
-            margin: 0 auto;
-            list-style: none;
-        }
-
-        .cultural-section li {
-            padding: 1.5rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            border-radius: 15px;
-            font-size: 1.1rem;
-            transition: transform 0.3s ease;
-        }
-
-        .cultural-section li:hover {
-            transform: translateX(10px);
-        }
-
-        .cultural-section a {
-            color: #667eea;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        .cultural-section a:hover {
-            text-decoration: underline;
-        }
-
-        .footer {
-            background: #3e5c7a;
-            color: white;
-            text-align: center;
-            padding: 3rem 2rem;
-        }
-
-        .footer-hearts {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            animation: heartbeat 1.5s ease-in-out infinite;
-        }
-
-        @keyframes heartbeat {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-        }
-
-        @media (max-width: 768px) {
-            .couple-names {
-                font-size: 2.5rem;
-            }
-            
-            .ampersand {
-                font-size: 2rem;
-                margin: 0 1rem;
-            }
-            
-            .hero-link {
-                display: block;
-                margin: 1rem auto;
-                max-width: 200px;
-            }
-            
-            .section {
-                padding: 4rem 1rem;
-            }
-        }
-    </style>
+<title>W3.CSS Template</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<style>
+body,h1,h2{font-family: "Raleway", sans-serif}
+body, html {height: 100%}
+p {line-height: 2}
+.bgimg, .bgimg2 {
+  min-height: 100%;
+  background-position: center;
+  background-size: cover;
+}
+.bgimg {background-image: url("2017.jpg")}
+.bgimg2 {background-image: url("/w3images/flowers.jpg")}
+</style>
 </head>
 <body>
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1 class="couple-names">
-                Emanuel<span class="ampersand">&</span>Yajnaseni
-            </h1>
-           <!---- <p class="subtitle">Two Hearts, Two Cultures, One Love Story</p>-->
-            <div class="hero-buttons">
-                <a href="pictures.html" class="hero-link">📸 Our Journey</a>
-                <a href="rsvp.html" class="hero-link">💌 RSVP</a>
-                <a href="registry.html" class="hero-link">🎁 Registry</a>
-            </div>
-        </div>
-        <div class="scroll-indicator">
-            <div style="font-size: 0.9rem; margin-top: 0.5rem;">Prepare for the trip to India</div>
-        </div>
-    </section>
 
-    <!-- Cultural Heritage Section -->
-    <section class="section cultural-section">
-        <h2>Explore Kolkata</h2>
-        <div>
-            <ul>
-                <li>
-                   A <a href="https://www.youtube.com/watch?v=_PbK9nRMids&t=2807s" target="_blank">vlog</a> about Kolkata tourism
-                </li> 
-                <li>
-                 A  <a href="https://www.youtube.com/watch?v=k93eOY9GbRI" target="_blank">video</a> about why Bangla sounds so sweet
-                </li>
-                <li><a href="dosndons.html">Dos and Don'ts for first trip to India
-                </a></li>
-            </ul>
-        </div>
-    </section>
+<!-- Header / Home-->
+<header class="w3-display-container w3-wide bgimg w3-grayscale-min" id="home">
+  <div class="w3-display-middle w3-text-white w3-center" style="margin-left: 3in">
+    <h1 class="w3-jumbo">Yajnaseni & Emanuel</h1>
+    <h2>Are getting married</h2>
+    <h2><b>03.01.2027</b></h2>
+  </div>
+</header>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-hearts">💕</div>
-        <p>Emanuel & Yajnaseni</p>
-        <p style="opacity: 0.6; margin-top: 2rem; font-size: 0.9rem;">
-            From Salt Lake City with love • Est. November 2016
-        </p>
-    </footer>
+<!-- Navbar (sticky bottom) -->
+<div class="w3-bottom w3-hide-small">
+  <div class="w3-bar w3-white w3-center w3-padding w3-opacity-min w3-hover-opacity-off">
+    <a href="#home" style="width:20%" class="w3-bar-item w3-button">Home</a>
+    <a href="#wedding" style="width:20%" class="w3-bar-item w3-button">Wedding</a>
+    <a href="#rsvp" style="width:20%" class="w3-bar-item w3-button w3-hover-black">RSVP</a>
+    <a href="#us" style="width:20%" class="w3-bar-item w3-button">Our Story</a>
+    <a href="kolkata.html" target="_blank" style="width:20%" class="w3-bar-item w3-button">India 101</a>
+  </div>
+</div>
+
+
+
+
+<!-- Wedding information -->
+<div class="w3-container w3-padding-64 w3-pale-red w3-grayscale-min w3-center" id="wedding">
+  <div class="w3-content">
+    <h1 class="w3-text-grey"><b>THE WEDDING</b></h1>
+<div class="w3-row">
+      <div class="w3-half">
+        <h2>When</h2>
+        <p>Wedding Ceremony - 19:10pm</p>
+        <p>Reception & Dinner - 18:30pm</p>
+      </div>
+      <div class="w3-half">
+        <h2>Where</h2>
+        <p>PC Chandra Gardens</p>
+        <p>Some where, some address</p>
+      </div>
+    </div>
+  </div>
+    <!-- TIMELINE -->
+    <style>
+      .tl-wrap { position: relative; display: flex; align-items: center; justify-content: space-between; margin: 48px 0; }
+      .tl-wrap::before { content: ''; position: absolute; top: 50%; left: 0; right: 0; height: 1px; background: #888; }
+      .tl-event { display: flex; flex-direction: column; align-items: center; position: relative; z-index: 1; width: 90px; }
+      .tl-event.above { flex-direction: column-reverse; }
+      .tl-icon { width: 48px; height: 48px; background: #fce4e4; border: 1px solid #888; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; transition: background 0.2s, transform 0.2s; cursor: default; }
+      .tl-event:hover .tl-icon { background: #888; transform: scale(1.1); }
+      .tl-event:hover .tl-icon svg { stroke: #fff; }
+      .tl-icon svg { width: 20px; height: 20px; stroke: #555; fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; transition: stroke 0.2s; }
+      .tl-info { text-align: center; }
+      .tl-time { display: block; font-size: 0.6rem; letter-spacing: 0.1em; color: #888; margin: 6px 0 2px; }
+      .tl-label { display: block; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.05em; color: #555; text-transform: uppercase; line-height: 1.3; }
+    </style>
+
+    <div class="tl-wrap">
+      <div class="tl-event below">
+        <div class="tl-icon"><svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
+        <div class="tl-info"><span class="tl-time">10:00 AM</span><span class="tl-label">Shuttle from<br>Hotel</span></div>
+      </div>
+      <div class="tl-event above">
+        <div class="tl-icon"><svg viewBox="0 0 24 24"><path d="M6 8h12l-1.5 8H7.5L6 8z"/><path d="M4 8h16"/><path d="M10 8V6c0-1 .5-2 2-2s2 1 2 2v2"/><path d="M9 13c1 1 5 1 6 0"/></svg></div>
+        <div class="tl-info"><span class="tl-time">10:30</span><span class="tl-label">Haldi<br>Ceremony</span></div>
+      </div>
+      <div class="tl-event above">
+        <div class="tl-icon"><svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></div>
+        <div class="tl-info"><span class="tl-time">18:00</span><span class="tl-label">Wedding<br>Photos</span></div>
+      </div>
+      <div class="tl-event above">
+        <div class="tl-icon"><svg viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></div>
+        <div class="tl-info"><span class="tl-time">6:30 PM</span><span class="tl-label">Dinner &<br>Toasts</span></div>
+      </div>
+      <div class="tl-event below">
+        <div class="tl-icon"><svg viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div>
+        <div class="tl-info"><span class="tl-time">7:30 PM</span><span class="tl-label">Party<br>Time</span></div>
+      </div>
+      <div class="tl-event above">
+        <div class="tl-icon"><svg viewBox="0 0 24 24"><path d="M12 2L9 9H2l5.5 4-2 7L12 16l6.5 4-2-7L22 9h-7z"/></svg></div>
+        <div class="tl-info"><span class="tl-time">12:00 AM</span><span class="tl-label">Sparkler<br>Send-Off</span></div>
+      </div>
+      <div class="tl-event below">
+        <div class="tl-icon"><svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
+        <div class="tl-info"><span class="tl-time">12:30 AM</span><span class="tl-label">Shuttle to<br>Hotel</span></div>
+      </div>
+    </div>
+    <!-- END TIMELINE -->
+</div>
+
+<!-- RSVP section -->
+<div class="w3-container w3-padding-64 w3-pale-red w3-center w3-wide" id="rsvp">
+  <h1>HOPE YOU CAN MAKE IT!</h1>
+  <p class="w3-large">Kindly Respond By July 31, 2026</p>
+  <p class="w3-xlarge">
+    <button href="https://form.jotform.com/260462524798062" class="w3-button w3-round w3-red w3-opacity w3-hover-opacity-off" style="padding:8px 60px">RSVP</button>
+  </p>
+</div>
+
+<!-- RSVP modal -->
+<!--<div id="id01" class="w3-modal">
+  <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="padding:32px;max-width:600px">
+    <div class="w3-container w3-white w3-center">
+      <h1 class="w3-wide">CAN YOU COME?</h1>
+      <p>We really hope you can make it.</p>
+      <form>
+        <input class="w3-input w3-border" type="text" placeholder="Name(s)" name="name">
+      </form>
+      <p><i>Sincerely, Emanuel &amp; Yajnaseni</i></p>
+      <div class="w3-row">
+        <div class="w3-half">
+          <button onclick="document.getElementById('id01').style.display='none'" type="button" class="w3-button w3-block w3-green">Going</button>
+        </div>
+        <div class="w3-half">
+          <button onclick="document.getElementById('id01').style.display='none'" type="button" class="w3-button w3-block w3-red">Can't come</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>-->
+
+<!-- About / us -->
+<div class="w3-container w3-padding-64 w3-pale-red w3-grayscale-min" id="us">
+  <div class="w3-content">
+    <h1 class="w3-center w3-text-grey"><b>Yajnaseni & Emanuel</b></h1>
+    <img class="w3-round w3-grayscale-min" src="campania.jpg" style="width:100%;margin:32px 0">
+    <p><i>We are getting married lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint
+      occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+      laboris nisi ut aliquip ex ea commodo consequat.</i>
+    </p><br>
+    <p class="w3-center"><a href="#wedding" class="w3-button w3-black w3-round w3-padding-large w3-large">Wedding Details</a></p>
+  </div>
+</div>
+
+
+
+<!-- Footer -->
+<footer class="w3-center w3-black w3-padding-16">
+  <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-text-green">w3.css</a></p>
+</footer>
+<div class="w3-hide-small" style="margin-bottom:32px">&nbsp;</div>
 
 </body>
 </html>
