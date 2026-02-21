@@ -1,12 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>W3.CSS Template</title>
+<title>Yajnaseni &amp; Emanuel</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <style>
+
+/* Hide all language elements by default */
+.en, .de { display: none; }
+
+/* Show only the ones matching the current lang */
+.en:lang(en), .de:lang(de) { display: block; }
+
 body,h1,h2{font-family: "Raleway", sans-serif}
 body, html {height: 100%}
 p {line-height: 2}
@@ -29,7 +36,7 @@ p {line-height: 2}
 .tl-icon svg { width: 20px; height: 20px; stroke: #555; fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; transition: stroke 0.2s; }
 .tl-info { text-align: center; }
 .tl-time { display: block; font-size: 0.6rem; letter-spacing: 0.1em; color: #888; margin: 6px 0 2px; }
-.tl-label { display: block; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.05em; color: #555; text-transform: uppercase; line-height: 1.3; }
+.tl-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.05em; color: #555; text-transform: uppercase; line-height: 1.3; }
 
 /* ── LANGUAGE TOGGLE BUTTON ── */
 .lang-toggle {
@@ -86,48 +93,65 @@ p {line-height: 2}
 <body>
 
 <!-- ── LANGUAGE TOGGLE ── -->
+
 <div class="lang-toggle" id="langToggle" title="Switch language">
-  <span class="lang-opt active" id="opt-en">EN</span>
-  <span class="lang-opt" id="opt-de">DE</span>
+  <span class="lang-opt active" data-lang="en" onclick="document.documentElement.lang = this.dataset.lang">EN</span>
+  <span class="lang-opt" data-lang="de" onclick="document.documentElement.lang = this.dataset.lang">DE</span>
 </div>
 
 <!-- Header / Home -->
 <header class="w3-display-container w3-wide bgimg w3-grayscale-min" id="home">
   <div class="w3-display-middle w3-text-white w3-center header-inner" style="margin-left: 3in">
     <h1 class="w3-jumbo">Yajnaseni &amp; Emanuel</h1>
-    <h2 data-en="Are getting married" data-de="Wir Heiraten">Are getting married</h2>
+    <h2 class="en">are getting married</h2>
+    <h2 class="de">heiraten</h2>
     <h2><b>03.01.2027</b></h2>
   </div>
 </header>
 
 <!-- Navbar -->
-<div class="w3-bottom w3-hide-small nav-wrap">
+<div class="w3-bottom w3-hide-small nav-wrap en">
   <div class="w3-bar w3-white w3-center w3-padding w3-opacity-min w3-hover-opacity-off">
-    <a href="#home"    style="width:20%" class="w3-bar-item w3-button" data-en="Home"     data-de="Startseite">Home</a>
-    <a href="#wedding" style="width:20%" class="w3-bar-item w3-button" data-en="Wedding"  data-de="Hochzeit">Wedding</a>
-    <a href="https://form.jotform.com/260462524798062" style="width:20%" class="w3-bar-item w3-button w3-hover-black" data-en="RSVP" data-de="Anmelden">RSVP</a>
-    <a href="#us"      style="width:20%" class="w3-bar-item w3-button" data-en="Our Story" data-de="Unsere Geschichte">Our Story</a>
-    <a href="india.html" target="_blank" style="width:20%" class="w3-bar-item w3-button" data-en="India 101" data-de="Indien 101">India 101</a>
+    <a href="#home"    style="width:20%" class="w3-bar-item w3-button">Home</a>
+    <a href="#wedding" style="width:20%" class="w3-bar-item w3-button">Wedding</a>
+    <a href="https://form.jotform.com/260462524798062" style="width:20%" class="w3-bar-item w3-button w3-hover-black">RSVP</a>
+    <a href="#us"      style="width:20%" class="w3-bar-item w3-button">Our Story</a>
+    <a href="india.html" target="_blank" style="width:20%" class="w3-bar-item w3-button">India 101</a>
   </div>
 </div>
+<div class="w3-bottom w3-hide-small nav-wrap de">
+  <div class="w3-bar w3-white w3-center w3-padding w3-opacity-min w3-hover-opacity-off">
+    <a href="#home"    style="width:20%" class="w3-bar-item w3-button">Start</a>
+    <a href="#wedding" style="width:20%" class="w3-bar-item w3-button">Hochzeit</a>
+    <a href="https://form.jotform.com/260462524798062" style="width:20%" class="w3-bar-item w3-button w3-hover-black">Anmeldung</a>
+    <a href="#us"      style="width:20%" class="w3-bar-item w3-button">Unsere Geschichte</a>
+    <a href="india.html" target="_blank" style="width:20%" class="w3-bar-item w3-button">India 101</a>
+  </div>
+</div>
+
 
 <!-- Wedding information -->
 <div class="w3-container w3-padding-64 w3-pale-red w3-grayscale-min w3-center" id="wedding">
   <div class="w3-content">
-    <h1 class="w3-text-grey"><b data-en="THE WEDDING" data-de="DIE HOCHZEIT">THE WEDDING</b></h1>
+      <h1 class="w3-text-grey"><b><span class="en">THE WEDDING</span><span class="de">DIE HOCHZEIT</span></b></h1>
     <div class="w3-row">
       <div class="w3-third">
-        <h2 data-en="When" data-de="Wann">When</h2>
-        <p data-en="Wedding Ceremony - 19:10pm" data-de="Trauungszeremonie - 19:10 Uhr">Wedding Ceremony - 19:10pm</p>
-        <p data-en="Reception &amp; Dinner - 18:30pm" data-de="Empfang &amp; Abendessen - 18:30 Uhr">Reception &amp; Dinner - 18:30pm</p>
+        <h2 class="en">When</h2>
+        <h2 class="de">Wann</h2>
+        <p class="en">Wedding Ceremony - 19:10pm</p>
+        <p class="de">Trauungszeremonie - 19:10 Uhr</p>
+        <p class="en">Reception &amp; Dinner - 18:30pm</p>
+        <p class="de">Empfang &amp; Abendessen - 18:30 Uhr</p>
       </div>
       <div class="w3-third w3-center">
         <img src="fish-transparent.png" alt="Logo" style="max-width: 120px; opacity: 0.8;">
       </div>
       <div class="w3-third">
-        <h2 data-en="Where" data-de="Wo">Where</h2>
-        <p data-en="PC Chandra Gardens" data-de="PC Chandra Gardens">PC Chandra Gardens</p>
-        <p data-en="Some where, some address" data-de="Irgendwo, irgendeine Adresse">Some where, some address</p>
+        <h2 class="en">Where</h2>
+        <h2 class="de">Wo</h2>
+        <p>PC Chandra Gardens</p>
+        <p class="en">Some where, some address</p>
+        <p class="de">Irgendwo, irgendeine Adresse</p>
       </div>
     </div>
 
@@ -135,57 +159,63 @@ p {line-height: 2}
     <div class="tl-wrap">
       <div class="tl-event below">
         <div class="tl-icon"><svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
-        <div class="tl-info"><span class="tl-time">10:00 AM</span><span class="tl-label" data-en="Shuttle from&#10;Hotel" data-de="Shuttle vom&#10;Hotel">Shuttle from<br>Hotel</span></div>
+        <div class="tl-info"><span class="tl-time">10:00 AM</span><span class="tl-label en">Shuttle from<br>Hotel</span><span class ="tl-label de">Shuttle vom<br>Hotel</span></div>
       </div>
       <div class="tl-event above">
         <div class="tl-icon"><svg viewBox="0 0 22 22"><path d="M6 8h12l-1.5 8H7.5L6 8z"/><path d="M4 8h16"/><path d="M10 8V6c0-1 .5-2 2-2s2 1 2 2v2"/><path d="M9 13c1 1 5 1 6 0"/></svg></div>
-        <div class="tl-info"><span class="tl-time">10:30</span><span class="tl-label" data-en="Haldi&#10;Ceremony" data-de="Haldi-&#10;Zeremonie">Haldi<br>Ceremony</span></div>
+        <div class="tl-info"><span class="tl-time">10:30</span><span class="tl-label en">Haldi<br>Ceremony</span><span class="tl-label de">Haldi-<br>Zeremonie</span></div>
       </div>
       <div class="tl-event below">
         <div class="tl-icon"><svg viewBox="0 0 22 22"><path d="M3 2v7c0 1.1.9 2 2 2h2v11h2V11h2a2 2 0 0 0 2-2V2h-2v5H7V2H5v5H3V2H3z"/><path d="M18 2c0 0-3 3-3 7s3 5 3 5v8h2V2h-2z"/></svg></div>
-        <div class="tl-info"><span class="tl-time">10:00 AM</span><span class="tl-label" data-en="Lunch" data-de="Mittagessen">Lunch</span></div>
+        <div class="tl-info"><span class="tl-time">10:00 AM</span><span class="tl-label en">Lunch</span><span class="tl-label de">Mittagessen</span></div>
       </div>
       <div class="tl-event above">
         <div class="tl-icon"><svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
-        <div class="tl-info"><span class="tl-time">14:00</span><span class="tl-label" data-en="Shuttle back to&#10;Hotel" data-de="Shuttle zurück&#10;zum Hotel">Shuttle back to<br>Hotel</span></div>
+       <div class="tl-info"><span class="tl-time">14:00</span><span class="tl-label en">Shuttle back to<br>Hotel</span><span class="tl-label de">Shuttle zurück<br>zum Hotel</span></div>
       </div>
       <div class="tl-event below">
         <div class="tl-icon"><svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
-        <div class="tl-info"><span class="tl-time">17:45</span><span class="tl-label" data-en="Shuttle from&#10;Hotel" data-de="Shuttle vom&#10;Hotel">Shuttle from<br>Hotel</span></div>
+        <div class="tl-info"><span class="tl-time">17:45</span><span class="tl-label en">Shuttle from<br>Hotel</span><span class="tl-label de">Shuttle vom<br>Hotel</span></div>
       </div>
       <div class="tl-event above">
         <div class="tl-icon"><svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></div>
-        <div class="tl-info"><span class="tl-time">18:00</span><span class="tl-label" data-en="Wedding&#10;Photos" data-de="Hochzeits-&#10;fotos">Wedding<br>Photos</span></div>
+        <div class="tl-info"><span class="tl-time">18:00</span><span class="tl-label en">Wedding<br>Photos</span><span class="tl-label de">Hochzeits-<br>fotos</span></div>
       </div>
       <div class="tl-event above">
         <div class="tl-icon"><svg viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></div>
-        <div class="tl-info"><span class="tl-time">6:30 PM</span><span class="tl-label" data-en="Dinner &amp;&#10;Toasts" data-de="Abendessen &amp;&#10;Reden">Dinner &amp;<br>Toasts</span></div>
+       <div class="tl-info"><span class="tl-time">6:30 PM</span><span class="tl-label en">Dinner &amp;<br>Toasts</span><span class="tl-label de">Abendessen &amp;<br>Reden</span></div>
       </div>
       <div class="tl-event below">
         <div class="tl-icon"><svg viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div>
-        <div class="tl-info"><span class="tl-time">7:30 PM</span><span class="tl-label" data-en="Party&#10;Time" data-de="Party-&#10;Zeit">Party<br>Time</span></div>
+        <div class="tl-info"><span class="tl-time">7:30 PM</span><span class="tl-label en">Party<br>Time</span><span class="tl-label de">Party-<br>Zeit</span></div>
       </div>
       <div class="tl-event above">
         <div class="tl-icon"><svg viewBox="0 0 24 24"><path d="M12 2L9 9H2l5.5 4-2 7L12 16l6.5 4-2-7L22 9h-7z"/></svg></div>
-        <div class="tl-info"><span class="tl-time">12:00 AM</span><span class="tl-label" data-en="Sparkler&#10;Send-Off" data-de="Wunderkerzen-&#10;Abschied">Sparkler<br>Send-Off</span></div>
+        <div class="tl-info"><span class="tl-time">12:00 AM</span><span class="tl-label en">Sparkler<br>Send-Off</span><span class="tl-label de">Wunderkerzen-<br>Abschied</span></div>
       </div>
       <div class="tl-event below">
         <div class="tl-icon"><svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
-        <div class="tl-info"><span class="tl-time">12:30 AM</span><span class="tl-label" data-en="Shuttle to&#10;Hotel" data-de="Shuttle zum&#10;Hotel">Shuttle to<br>Hotel</span></div>
+        <div class="tl-info"><span class="tl-time">12:30 AM</span><span class="tl-label en">Shuttle to<br>Hotel</span><span class="tl-label de">Shuttle zum<br>Hotel</span></div>
       </div>
     </div>
     <!-- END TIMELINE -->
-     <h5 class="w3-center w3-text-grey"><i data-en="Schedule is tentative and subject to change" data-de="Zeitplan ist vorläufig und kann sich ändern">Schedule is tentative and subject to change</i></h5>
-     <h5 class="w3-center w3-text-grey"><i data-en="Hotel information will be communicated by email" data-de="Information zur hotel wird per email kommunizieren">Please arrive 15 minutes early for the shuttle</i></h5>
+    <h5 class="w3-center w3-text-grey"><i><span class="en">Schedule is tentative and subject to change</span><span class="de">Zeitplan ist vorlaufig und kann sich andern</span></i></h5>
+    <h5 class="w3-center w3-text-grey"><i><span class="en">Hotel information will be communicated by email</span><span class="de">Information zum Hotel schicken wir per E-Mail</span></i></h5>
+    <h5 class="w3-center w3-text-grey"><i><span class="en">Please arrive 15 minutes early for the shuttle</span><span class="de">Bitte kommt 15 Minuten fruher zum Shuttle</span></i></h5>
   </div>
 </div>
 
 <!-- RSVP section -->
 <div class="w3-container w3-padding-64 w3-pale-red w3-center w3-wide" id="rsvp">
-  <h1 data-en="HOPE YOU CAN MAKE IT!" data-de="WIR HOFFEN, SIE KOMMEN!">HOPE YOU CAN MAKE IT!</h1>
-  <p class="w3-large" data-en="Kindly Respond By July 31, 2026" data-de="Bitte antworten bis zum 31. Juli 2026">Kindly Respond By July 31, 2026</p>
-  <p class="w3-xlarge">
-    <a href="https://form.jotform.com/260462524798062" class="w3-button w3-round w3-red w3-opacity w3-hover-opacity-off" style="padding:8px 60px" data-en="RSVP" data-de="Anmelden">RSVP</a>
+  <h1 class="en">HOPE YOU CAN MAKE IT!</h1>
+  <h1 class="de">WIR HOFFEN IHR KOMMT!</h1>
+  <p class="w3-large en">Kindly Respond By July 31, 2026</p>
+  <p class="w3-large de">Bitte antwortet bis zum 31. Juli 2026</p>
+  <p class="w3-xlarge en">
+    <a href="https://form.jotform.com/260462524798062" class="w3-button w3-round w3-red w3-opacity w3-hover-opacity-off" style="padding:8px 60px">RSVP</a>
+  </p>
+  <p class="w3-xlarge de">
+  <a href="https://form.jotform.com/260462524798062" class="w3-button w3-round w3-red w3-opacity w3-hover-opacity-off" style="padding:8px 60px">Anmelden</a>
   </p>
 </div>
 
@@ -196,16 +226,15 @@ p {line-height: 2}
     <img class="w3-round w3-grayscale-min" src="campania.jpg" style="width:100%;margin:32px 0">
     <p>
       <i>
-        <span data-en="We are getting married lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-              data-de="Wir heiraten lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.">
-          We are getting married lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint
-          occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-          laboris nisi ut aliquip ex ea commodo consequat.
-        </span>
+          <span class="en">We are getting married lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</span>
+          <span class="de">Wir heiraten lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</span>
       </i>
     </p><br>
-    <p class="w3-center">
-      <a href="#wedding" class="w3-button w3-black w3-round w3-padding-large w3-large" data-en="Wedding Details" data-de="Hochzeitsdetails">Wedding Details</a>
+    <p class="w3-center en">
+      <a href="#wedding" class="w3-button w3-black w3-round w3-padding-large w3-large">Wedding Details</a>
+    </p>
+    <p class="w3-center de">
+    <a href="#wedding" class="w3-button w3-black w3-round w3-padding-large w3-large">Hochzeitsdetails</a>
     </p>
   </div>
 </div>
@@ -215,35 +244,6 @@ p {line-height: 2}
   <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-text-green">w3.css</a></p>
 </footer>
 <div class="w3-hide-small" style="margin-bottom:32px">&nbsp;</div>
-
-<script>
-(function () {
-  var currentLang = 'en';
-
-  function applyLang(lang) {
-    // Update all elements with data-en / data-de attributes
-    document.querySelectorAll('[data-en]').forEach(function (el) {
-      var text = el.getAttribute('data-' + lang) || el.getAttribute('data-en');
-      // Preserve innerHTML structure for elements that need <br> (tl-label spans)
-      // We store raw text with &#10; newlines — convert to <br> for display
-      el.innerHTML = text.replace(/\n/g, '<br>');
-    });
-
-    // Toggle active pill
-    document.getElementById('opt-en').classList.toggle('active', lang === 'en');
-    document.getElementById('opt-de').classList.toggle('active', lang === 'de');
-
-    // Update html lang attribute
-    document.documentElement.lang = lang;
-
-    currentLang = lang;
-  }
-
-  document.getElementById('langToggle').addEventListener('click', function () {
-    applyLang(currentLang === 'en' ? 'de' : 'en');
-  });
-})();
-</script>
 
 </body>
 </html>

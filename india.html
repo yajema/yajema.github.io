@@ -7,6 +7,13 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <style>
+
+/* Hide all language elements by default */
+.en, .de { display: none; }
+
+/* Show only the ones matching the current lang */
+.en:lang(en), .de:lang(de) { display: block; }
+
 body, h1, h2, h3 { font-family: "Raleway", sans-serif; }
 body, html { height: 100%; }
 p { line-height: 2; }
@@ -192,194 +199,250 @@ p { line-height: 2; }
 
 <!-- Language Toggle -->
 <div class="lang-toggle" id="langToggle" title="Switch language">
-  <span class="lang-opt active" id="opt-en">EN</span>
-  <span class="lang-opt" id="opt-de">DE</span>
+  <span class="lang-opt active" data-lang="en" onclick="document.documentElement.lang = this.dataset.lang">EN</span>
+  <span class="lang-opt" data-lang="de" onclick="document.documentElement.lang = this.dataset.lang">DE</span>
 </div>
 
-<!-- ── HEADER ── -->
+<!--Header -->
 <header class="w3-display-container w3-wide bgimg w3-grayscale-min" id="home" style="min-height:60vh">
   <div class="w3-display-middle w3-text-white w3-center header-inner" style="margin-left:3in; text-shadow: 0 2px 12px rgba(0,0,0,0.55);">
     <h1 class="w3-jumbo" style="margin-bottom:0">India 101</h1>
-    <h2 data-en="What to do and what not to do" data-de="Was man tun und lassen sollte">What to do and what not to do</h2>
+    <h2 class="en">What to do and what not to do</h2>
+    <h2 class="de">Was man tun und lassen sollte</h2>
   </div>
 </header>
 
-<!-- ── NAVBAR ── -->
-<div class="w3-bottom w3-hide-small nav-wrap">
+<!-- NAVBAR -->
+<div class="w3-bottom w3-hide-small nav-wrap en">
   <div class="w3-bar w3-white w3-center w3-padding w3-opacity-min w3-hover-opacity-off">
-    <a href="index.html"  style="width:20%" class="w3-bar-item w3-button" data-en="← Home"     data-de="← Startseite">← Home</a>
-    <a href="#food"       style="width:20%" class="w3-bar-item w3-button" data-en="Food"        data-de="Essen">Food</a>
-    <a href="#tourism"    style="width:20%" class="w3-bar-item w3-button" data-en="Tourism"     data-de="Tourismus">Tourism</a>
-    <a href="#tips"       style="width:20%" class="w3-bar-item w3-button" data-en="Tips"        data-de="Tipps">Tips</a>
-    <a href="#dosdontss"  style="width:20%" class="w3-bar-item w3-button" data-en="Dos &amp; Don'ts" data-de="Verhaltensregeln">Dos &amp; Don'ts</a>
+    <a href="index.html"  style="width:20%" class="w3-bar-item w3-button">&larr; Home</a>
+    <a href="#food"       style="width:20%" class="w3-bar-item w3-button">Food</a>
+    <a href="#tourism"    style="width:20%" class="w3-bar-item w3-button">Tourism</a>
+    <a href="#tips"       style="width:20%" class="w3-bar-item w3-button">Tips</a>
+    <a href="#dosdontss"  style="width:20%" class="w3-bar-item w3-button">Dos &amp; Don'ts</a>
+  </div>
+</div>
+<div class="w3-bottom w3-hide-small nav-wrap de">
+  <div class="w3-bar w3-white w3-center w3-padding w3-opacity-min w3-hover-opacity-off">
+    <a href="index.html"  style="width:20%" class="w3-bar-item w3-button">&larr; Startseite</a>
+    <a href="#food"       style="width:20%" class="w3-bar-item w3-button">Essen</a>
+    <a href="#tourism"    style="width:20%" class="w3-bar-item w3-button">Tourismus</a>
+    <a href="#tips"       style="width:20%" class="w3-bar-item w3-button">Tipps</a>
+    <a href="#dosdontss"  style="width:20%" class="w3-bar-item w3-button">Verhaltensregeln</a>
   </div>
 </div>
 
-<!-- ── FOOD ── -->
+<!-- FOOD -->
 <div class="w3-container w3-padding-64 w3-pale-red w3-grayscale-min" id="food">
   <div class="w3-content">
-    <span class="section-icon">🍛</span>
-    <h1 class="w3-text-grey w3-center"><b data-en="Food" data-de="Essen">Food</b></h1>
-    <p class="w3-center w3-text-grey" data-en="Kolkata has one of India's most celebrated food cultures. Here are the must-tries." data-de="Kalkutta hat eine der berühmtesten Essenskulturen Indiens. Das sollten Sie unbedingt probieren.">
-      Kolkata has one of India's most celebrated food cultures. Here are the must-tries.
-    </p>
+    <span class="section-icon">&#x1F35B;</span>
+    <h1 class="w3-text-grey w3-center en"><b>Food</b></h1>
+    <h1 class="w3-text-grey w3-center de"><b>Essen</b></h1>
+    <p class="w3-center w3-text-grey en">Kolkata has one of India's most celebrated food cultures. Here are the must-tries.</p>
+    <p class="w3-center w3-text-grey de">Kalkutta hat eine der beruhmtesten Essenskulturen Indiens. Das sollten Sie unbedingt probieren.</p>
 
     <div class="card-grid">
       <div class="card">
-        <h3 data-en="Kathi Roll" data-de="Kathi Roll">Kathi Roll</h3>
-        <p data-en="Kolkata's iconic street food — spiced meat or paneer wrapped in a flaky paratha. Best grabbed from a roadside stall." data-de="Kolkattas ikonisches Straßenessen — gewürztes Fleisch oder Paneer in einem knusprigen Paratha. Am besten an einem Straßenstand.">Kolkata's iconic street food — spiced meat or paneer wrapped in a flaky paratha. Best grabbed from a roadside stall.</p>
-        <span class="card-meta" data-en="Street food · ₹30–80" data-de="Straßenessen · ₹30–80">Street food · ₹30–80</span>
+        <h3 class="en">Kathi Roll</h3>
+        <h3 class="de">Kathi Roll</h3>
+        <p class="en">Kolkata's iconic street food &mdash; spiced meat or paneer wrapped in a flaky paratha. Best grabbed from a roadside stall.</p>
+        <p class="de">Kolkattas ikonisches Stra&szlig;enessen &mdash; gew&uuml;rztes Fleisch oder Paneer in einem knusprigen Paratha. Am besten an einem Stra&szlig;enstand.</p>
+        <span class="card-meta en">Street food &middot; &#x20B9;30&ndash;80</span>
+        <span class="card-meta de">Stra&szlig;enessen &middot; &#x20B9;30&ndash;80</span>
       </div>
       <div class="card">
-        <h3 data-en="Mishti Doi" data-de="Mishti Doi">Mishti Doi</h3>
-        <p data-en="Sweetened fermented yogurt, served in traditional clay pots. A Bengali classic you must try for dessert." data-de="Gesüßter fermentierter Joghurt, serviert in traditionellen Tontöpfen. Ein bengalisches Klassikum zum Nachtisch.">Sweetened fermented yogurt, served in traditional clay pots. A Bengali classic you must try for dessert.</p>
-        <span class="card-meta" data-en="Dessert · ₹20–50" data-de="Nachtisch · ₹20–50">Dessert · ₹20–50</span>
+        <h3 class="en">Mishti Doi</h3>
+        <h3 class="de">Mishti Doi</h3>
+        <p class="en">Sweetened fermented yogurt, served in traditional clay pots. A Bengali classic you must try for dessert.</p>
+        <p class="de">Ges&uuml;&szlig;ter fermentierter Joghurt, serviert in traditionellen Tont&ouml;pfen. Ein bengalisches Klassikum zum Nachtisch.</p>
+        <span class="card-meta en">Dessert &middot; &#x20B9;20&ndash;50</span>
+        <span class="card-meta de">Nachtisch &middot; &#x20B9;20&ndash;50</span>
       </div>
       <div class="card">
-        <h3 data-en="Kosha Mangsho" data-de="Kosha Mangsho">Kosha Mangsho</h3>
-        <p data-en="Slow-cooked mutton curry with deep, caramelised spices. A Bengali Sunday staple — rich and unforgettable." data-de="Langsam gekochtes Hammelfleisch-Curry mit tiefen, karamellisierten Gewürzen. Ein unvergessliches bengalisches Sonntagsgericht.">Slow-cooked mutton curry with deep, caramelised spices. A Bengali Sunday staple — rich and unforgettable.</p>
-        <span class="card-meta" data-en="Main course · ₹200–400" data-de="Hauptgericht · ₹200–400">Main course · ₹200–400</span>
+        <h3 class="en">Kosha Mangsho</h3>
+        <h3 class="de">Kosha Mangsho</h3>
+        <p class="en">Slow-cooked mutton curry with deep, caramelised spices. A Bengali Sunday staple &mdash; rich and unforgettable.</p>
+        <p class="de">Langsam gekochtes Hammelfleisch-Curry mit tiefen, karamellisierten Gew&uuml;rzen. Ein unvergessliches bengalisches Sonntagsgericht.</p>
+        <span class="card-meta en">Main course &middot; &#x20B9;200&ndash;400</span>
+        <span class="card-meta de">Hauptgericht &middot; &#x20B9;200&ndash;400</span>
       </div>
       <div class="card">
-        <h3 data-en="Puchka" data-de="Puchka">Puchka</h3>
-        <p data-en="Kolkata's version of pani puri — hollow crispy shells filled with spiced tamarind water. Addictive and refreshing." data-de="Kolkattas Version von Pani Puri — hohle knusprige Schalen mit gewürztem Tamarindenwasser. Erfrischend und süchtig machend.">Kolkata's version of pani puri — hollow crispy shells filled with spiced tamarind water. Addictive and refreshing.</p>
-        <span class="card-meta" data-en="Street snack · ₹20–40" data-de="Straßensnack · ₹20–40">Street snack · ₹20–40</span>
+        <h3 class="en">Puchka</h3>
+        <h3 class="de">Puchka</h3>
+        <p class="en">Kolkata's version of pani puri &mdash; hollow crispy shells filled with spiced tamarind water. Addictive and refreshing.</p>
+        <p class="de">Kolkattas Version von Pani Puri &mdash; hohle knusprige Schalen mit gew&uuml;rztem Tamarindenwasser. Erfrischend und s&uuml;chtig machend.</p>
+        <span class="card-meta en">Street snack &middot; &#x20B9;20&ndash;40</span>
+        <span class="card-meta de">Stra&szlig;ensnack &middot; &#x20B9;20&ndash;40</span>
       </div>
       <div class="card">
-        <h3 data-en="Hilsa Fish (Ilish)" data-de="Hilsa-Fisch (Ilish)">Hilsa Fish (Ilish)</h3>
-        <p data-en="The pride of Bengali cuisine. Typically cooked in mustard sauce or steamed in banana leaf. Seasonal and special." data-de="Der Stolz der bengalischen Küche. Typischerweise in Senfsoße oder in Bananenblatt gedämpft. Saisonal und besonders.">The pride of Bengali cuisine. Typically cooked in mustard sauce or steamed in banana leaf. Seasonal and special.</p>
-        <span class="card-meta" data-en="Fine dining · ₹400–900" data-de="Gehobene Küche · ₹400–900">Fine dining · ₹400–900</span>
+        <h3 class="en">Hilsa Fish (Ilish)</h3>
+        <h3 class="de">Hilsa-Fisch (Ilish)</h3>
+        <p class="en">The pride of Bengali cuisine. Typically cooked in mustard sauce or steamed in banana leaf. Seasonal and special.</p>
+        <p class="de">Der Stolz der bengalischen K&uuml;che. Typischerweise in Senfso&szlig;e oder in Bananenblatt ged&auml;mpft. Saisonal und besonders.</p>
+        <span class="card-meta en">Fine dining &middot; &#x20B9;400&ndash;900</span>
+        <span class="card-meta de">Gehobene K&uuml;che &middot; &#x20B9;400&ndash;900</span>
       </div>
       <div class="card">
-        <h3 data-en="Chai" data-de="Chai">Chai</h3>
-        <p data-en="Strong, milky, sweet tea served in tiny clay cups (bhaars). Have it at a corner tea stall — this is where Kolkata breathes." data-de="Starker, süßer Milchtee in kleinen Tontassen. Am Eck-Teestand trinken — hier atmet Kalkutta.">Strong, milky, sweet tea served in tiny clay cups (bhaars). Have it at a corner tea stall — this is where Kolkata breathes.</p>
-        <span class="card-meta" data-en="Drink · ₹5–15" data-de="Getränk · ₹5–15">Drink · ₹5–15</span>
+        <h3 class="en">Chai</h3>
+        <h3 class="de">Chai</h3>
+        <p class="en">Strong, milky, sweet tea served in tiny clay cups (bhaars). Have it at a corner tea stall &mdash; this is where Kolkata breathes.</p>
+        <p class="de">Starker, s&uuml;&szlig;er Milchtee in kleinen Tontassen. Am Eck-Teestand trinken &mdash; hier atmet Kalkutta.</p>
+        <span class="card-meta en">Drink &middot; &#x20B9;5&ndash;15</span>
+        <span class="card-meta de">Getr&auml;nk &middot; &#x20B9;5&ndash;15</span>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ── TOURISM ── -->
+<!-- �� TOURISM �� -->
 <div class="w3-container w3-padding-64 w3-white w3-grayscale-min" id="tourism">
   <div class="w3-content">
-    <span class="section-icon">🏛️</span>
-    <h1 class="w3-text-grey w3-center"><b data-en="Tourism" data-de="Tourismus">Tourism</b></h1>
-    <p class="w3-center w3-text-grey" data-en="Kolkata rewards the curious traveller. These are the places worth your time." data-de="Kalkutta belohnt den neugierigen Reisenden. Diese Orte sind Ihre Zeit wert.">
-      Kolkata rewards the curious traveller. These are the places worth your time.
-    </p>
+    <span class="section-icon">&#x1F3DB;&#xFE0F;</span>
+    <h1 class="w3-text-grey w3-center en"><b>Tourism</b></h1>
+    <h1 class="w3-text-grey w3-center de"><b>Tourismus</b></h1>
+    <p class="w3-center w3-text-grey en">Kolkata rewards the curious traveller. These are the places worth your time.</p>
+    <p class="w3-center w3-text-grey de">Kalkutta belohnt den neugierigen Reisenden. Diese Orte sind Ihre Zeit wert.</p>
 
     <div class="card-grid">
       <div class="card">
-        <h3 data-en="Victoria Memorial" data-de="Victoria Memorial">Victoria Memorial</h3>
-        <p data-en="A stunning white marble monument built during the British Raj. The museum inside tells the full story of colonial India." data-de="Ein atemberaubendes weißes Marmormonument aus der britischen Raj-Ära. Das Museum erzählt die Geschichte des kolonialen Indiens.">A stunning white marble monument built during the British Raj. The museum inside tells the full story of colonial India.</p>
-        <span class="card-meta" data-en="Landmark · Entry ₹30 (Indians) / ₹500 (foreign)" data-de="Sehenswürdigkeit · Eintritt ₹30 / ₹500">Landmark · Entry ₹30 / ₹500</span>
+        <h3 class="en">Victoria Memorial</h3>
+        <h3 class="de">Victoria Memorial</h3>
+        <p class="en">A stunning white marble monument built during the British Raj. The museum inside tells the full story of colonial India.</p>
+        <p class="de">Ein atemberaubendes wei&szlig;es Marmormonument aus der britischen Raj-&Auml;ra. Das Museum erz&auml;hlt die Geschichte des kolonialen Indiens.</p>
+        <span class="card-meta en">Landmark &middot; Entry &#x20B9;30 (Indians) / &#x20B9;500 (foreign)</span>
+        <span class="card-meta de">Sehensw&uuml;rdigkeit &middot; Eintritt &#x20B9;30 / &#x20B9;500</span>
       </div>
       <div class="card">
-        <h3 data-en="Howrah Bridge" data-de="Howrah Bridge">Howrah Bridge</h3>
-        <p data-en="One of the busiest bridges in the world. Walk across at dawn for an unforgettable view of the Hooghly River." data-de="Eine der belebtesten Brücken der Welt. Im Morgengrauen überqueren für einen unvergesslichen Blick auf den Hooghly.">One of the busiest bridges in the world. Walk across at dawn for an unforgettable view of the Hooghly River.</p>
-        <span class="card-meta" data-en="Icon · Free" data-de="Ikone · Kostenlos">Icon · Free</span>
+        <h3 class="en">Howrah Bridge</h3>
+        <h3 class="de">Howrah Bridge</h3>
+        <p class="en">One of the busiest bridges in the world. Walk across at dawn for an unforgettable view of the Hooghly River.</p>
+        <p class="de">Eine der belebtesten Br&uuml;cken der Welt. Im Morgengrauen &uuml;berqueren f&uuml;r einen unvergesslichen Blick auf den Hooghly.</p>
+        <span class="card-meta en">Icon &middot; Free</span>
+        <span class="card-meta de">Ikone &middot; Kostenlos</span>
       </div>
       <div class="card">
-        <h3 data-en="College Street" data-de="College Street">College Street</h3>
-        <p data-en="The world's largest second-hand book market. Lose yourself in stacks of Bengali literature, philosophy, and rare finds." data-de="Der weltgrößte Antiquariatsbüchermarkt. Verlieren Sie sich in bengalischer Literatur, Philosophie und seltenen Fundstücken.">The world's largest second-hand book market. Lose yourself in stacks of Bengali literature, philosophy, and rare finds.</p>
-        <span class="card-meta" data-en="Culture · Free to explore" data-de="Kultur · Kostenlos">Culture · Free to explore</span>
+        <h3 class="en">College Street</h3>
+        <h3 class="de">College Street</h3>
+        <p class="en">The world's largest second-hand book market. Lose yourself in stacks of Bengali literature, philosophy, and rare finds.</p>
+        <p class="de">Der weltgr&ouml;&szlig;te Antiquariatsb&uuml;chermarkt. Verlieren Sie sich in bengalischer Literatur, Philosophie und seltenen Fundst&uuml;cken.</p>
+        <span class="card-meta en">Culture &middot; Free to explore</span>
+        <span class="card-meta de">Kultur &middot; Kostenlos</span>
       </div>
       <div class="card">
-        <h3 data-en="Kalighat Temple" data-de="Kalighat-Tempel">Kalighat Temple</h3>
-        <p data-en="One of the most sacred Hindu temples in India. Dress modestly and be prepared for a vivid, intense experience." data-de="Einer der heiligsten hinduistischen Tempel Indiens. Bedeckt kleiden und auf ein intensives Erlebnis vorbereiten.">One of the most sacred Hindu temples in India. Dress modestly and be prepared for a vivid, intense experience.</p>
-        <span class="card-meta" data-en="Temple · Free (donations welcome)" data-de="Tempel · Kostenlos (Spenden willkommen)">Temple · Free (donations welcome)</span>
+        <h3 class="en">Kalighat Temple</h3>
+        <h3 class="de">Kalighat-Tempel</h3>
+        <p class="en">One of the most sacred Hindu temples in India. Dress modestly and be prepared for a vivid, intense experience.</p>
+        <p class="de">Einer der heiligsten hinduistischen Tempel Indiens. Bedeckt kleiden und auf ein intensives Erlebnis vorbereiten.</p>
+        <span class="card-meta en">Temple &middot; Free (donations welcome)</span>
+        <span class="card-meta de">Tempel &middot; Kostenlos (Spenden willkommen)</span>
       </div>
       <div class="card">
-        <h3 data-en="Sundarbans Day Trip" data-de="Tagesausflug Sundarbans">Sundarbans Day Trip</h3>
-        <p data-en="The world's largest mangrove delta, home to the Royal Bengal Tiger. A boat safari is an unforgettable half-day." data-de="Das weltgrößte Mangrovedelta, Heimat des Königsbengalischen Tigers. Eine Bootsfahrt ist ein unvergesslicher Halbtagesausflug.">The world's largest mangrove delta, home to the Royal Bengal Tiger. A boat safari is an unforgettable half-day.</p>
-        <span class="card-meta" data-en="Nature · Day trip from Kolkata" data-de="Natur · Tagesausflug von Kalkutta">Nature · Day trip from Kolkata</span>
+        <h3 class="en">Sundarbans Day Trip</h3>
+        <h3 class="de">Tagesausflug Sundarbans</h3>
+        <p class="en">The world's largest mangrove delta, home to the Royal Bengal Tiger. A boat safari is an unforgettable half-day.</p>
+        <p class="de">Das weltgr&ouml;&szlig;te Mangrovedelta, Heimat des K&ouml;nigsbengalischen Tigers. Eine Bootsfahrt ist ein unvergesslicher Halbtagesausflug.</p>
+        <span class="card-meta en">Nature &middot; Day trip from Kolkata</span>
+        <span class="card-meta de">Natur &middot; Tagesausflug von Kalkutta</span>
       </div>
       <div class="card">
-        <h3 data-en="Park Street" data-de="Park Street">Park Street</h3>
-        <p data-en="The city's social heart — lined with restaurants, cafés, and music venues. Great for an evening out." data-de="Das gesellschaftliche Herz der Stadt — gesäumt von Restaurants, Cafés und Musikclubs. Perfekt für einen Abend.">The city's social heart — lined with restaurants, cafés, and music venues. Great for an evening out.</p>
-        <span class="card-meta" data-en="Nightlife &amp; dining" data-de="Nachtleben &amp; Essen">Nightlife &amp; dining</span>
+        <h3 class="en">Park Street</h3>
+        <h3 class="de">Park Street</h3>
+        <p class="en">The city's social heart &mdash; lined with restaurants, cafcaf&eacute;seacute;s, and music venues. Great for an evening out.</p>
+        <p class="de">Das gesellschaftliche Herz der Stadt &mdash; ges&auml;umt von Restaurants, CafCaf&eacute;seacute;s und Musikclubs. Perfekt f&uuml;r einen Abend.</p>
+        <span class="card-meta en">Nightlife &amp; dining</span>
+        <span class="card-meta de">Nachtleben &amp; Essen</span>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ── TIPS ── -->
+<!-- �� TIPS �� -->
 <div class="w3-container w3-padding-64 w3-pale-red w3-grayscale-min" id="tips">
   <div class="w3-content">
-    <span class="section-icon">💡</span>
-    <h1 class="w3-text-grey w3-center"><b data-en="Travel Tips" data-de="Reise-Tipps">Travel Tips</b></h1>
-    <p class="w3-center w3-text-grey" data-en="Practical advice to make your visit smooth and enjoyable." data-de="Praktische Ratschläge für einen reibungslosen und angenehmen Besuch.">
-      Practical advice to make your visit smooth and enjoyable.
-    </p>
+    <span class="section-icon">&#x1F4A1;</span>
+    <h1 class="w3-text-grey w3-center en"><b>Travel Tips</b></h1>
+    <h1 class="w3-text-grey w3-center de"><b>Reise-Tipps</b></h1>
+    <p class="w3-center w3-text-grey en">Practical advice to make your visit smooth and enjoyable.</p>
+    <p class="w3-center w3-text-grey de">Praktische Ratschl&auml;ge f&uuml;r einen reibungslosen und angenehmen Besuch.</p>
 
     <ul class="tips-list">
       <li>
         <span class="tip-num">1</span>
-        <span data-en="Download offline maps (Google Maps or Maps.me) before you arrive — mobile data can be unreliable in busy areas." data-de="Laden Sie Offline-Karten (Google Maps oder Maps.me) vor der Anreise herunter — mobile Daten können in belebten Gegenden unzuverlässig sein.">Download offline maps (Google Maps or Maps.me) before you arrive — mobile data can be unreliable in busy areas.</span>
+        <span class="en">Download offline maps (Google Maps or Maps.me) before you arrive &mdash; mobile data can be unreliable in busy areas.</span>
+        <span class="de">Laden Sie Offline-Karten (Google Maps oder Maps.me) vor der Anreise herunter &mdash; mobile Daten k&ouml;nnen in belebten Gegenden unzuverl&auml;ssig sein.</span>
       </li>
       <li>
         <span class="tip-num">2</span>
-        <span data-en="Use Ola or Uber for safe, metered rides. Avoid negotiating fares with unmetered auto-rickshaws unless you know the local rates." data-de="Nutzen Sie Ola oder Uber für sichere Fahrten. Vermeiden Sie Preisverhandlungen mit ungemessenen Auto-Rikschas, wenn Sie die lokalen Preise nicht kennen.">Use Ola or Uber for safe, metered rides. Avoid negotiating fares with unmetered auto-rickshaws unless you know the local rates.</span>
+        <span class="en">Use Ola or Uber for safe, metered rides. Avoid negotiating fares with unmetered auto-rickshaws unless you know the local rates.</span>
+        <span class="de">Nutzen Sie Ola oder Uber f&uuml;r sichere Fahrten. Vermeiden Sie Preisverhandlungen mit ungemessenen Auto-Rikschas, wenn Sie die lokalen Preise nicht kennen.</span>
       </li>
       <li>
         <span class="tip-num">3</span>
-        <span data-en="Carry cash in smaller denominations (₹10, ₹20, ₹50). Many street vendors and smaller shops do not accept cards or UPI from foreign numbers." data-de="Tragen Sie Bargeld in kleinen Stückelungen (₹10, ₹20, ₹50). Viele Straßenhändler akzeptieren keine Karten von ausländischen Nummern.">Carry cash in smaller denominations (₹10, ₹20, ₹50). Many street vendors and smaller shops do not accept cards or UPI from foreign numbers.</span>
+        <span class="en">Carry cash in smaller denominations (&#x20B9;10, &#x20B9;20, &#x20B9;50). Many street vendors and smaller shops do not accept cards or UPI from foreign numbers.</span>
+        <span class="de">Tragen Sie Bargeld in kleinen St&uuml;ckelungen (&#x20B9;10, &#x20B9;20, &#x20B9;50). Viele Stra&szlig;enh&auml;ndler akzeptieren keine Karten von ausl&auml;ndischen Nummern.</span>
       </li>
       <li>
         <span class="tip-num">4</span>
-        <span data-en="Drink only bottled or filtered water. Avoid ice in drinks unless you are in a trusted restaurant. Stick to cooked food at street stalls." data-de="Trinken Sie nur Flaschenwasser oder gefiltertes Wasser. Vermeiden Sie Eis in Getränken außer in vertrauenswürdigen Restaurants.">Drink only bottled or filtered water. Avoid ice in drinks unless you are in a trusted restaurant. Stick to cooked food at street stalls.</span>
+        <span class="en">Drink only bottled or filtered water. Avoid ice in drinks unless you are in a trusted restaurant. Stick to cooked food at street stalls.</span>
+        <span class="de">Trinken Sie nur Flaschenwasser oder gefiltertes Wasser. Vermeiden Sie Eis in Getr&auml;nken au&szlig;er in vertrauensw&uuml;rdigen Restaurants.</span>
       </li>
       <li>
         <span class="tip-num">5</span>
-        <span data-en="The heat in January is mild (~15–25°C) but pack a light layer for early mornings and evenings, which can feel cool." data-de="Die Hitze im Januar ist mild (~15–25°C), aber packen Sie eine leichte Schicht für frühe Morgen und Abende ein.">The heat in January is mild (~15–25°C) but pack a light layer for early mornings and evenings, which can feel cool.</span>
+        <span class="en">The heat in January is mild (~15&ndash;25&deg;C) but pack a light layer for early mornings and evenings, which can feel cool.</span>
+        <span class="de">Die Hitze im Januar ist mild (~15&ndash;25&deg;C), aber packen Sie eine leichte Schicht f&uuml;r fr&uuml;he Morgen und Abende ein.</span>
       </li>
       <li>
         <span class="tip-num">6</span>
-        <span data-en="Bargaining is expected in markets and bazaars. Start at about 50–60% of the asking price and find a middle ground. Smile — it goes a long way." data-de="In Märkten und Basaren wird Feilschen erwartet. Beginnen Sie bei ca. 50–60% des Anfangspreises. Lächeln hilft immer.">Bargaining is expected in markets and bazaars. Start at about 50–60% of the asking price and find a middle ground. Smile — it goes a long way.</span>
+        <span class="en">Bargaining is expected in markets and bazaars. Start at about 50&ndash;60% of the asking price and find a middle ground. Smile &mdash; it goes a long way.</span>
+        <span class="de">In M&auml;rkten und Basaren wird Feilschen erwartet. Beginnen Sie bei ca. 50&ndash;60% des Anfangspreises. L&auml;cheln hilft immer.</span>
       </li>
       <li>
         <span class="tip-num">7</span>
-        <span data-en="Dress modestly when visiting temples or religious sites — cover shoulders and knees. Remove shoes before entering any place of worship." data-de="Kleiden Sie sich bescheiden beim Besuch von Tempeln — Schultern und Knie bedecken. Schuhe vor jedem Gotteshaus ausziehen.">Dress modestly when visiting temples or religious sites — cover shoulders and knees. Remove shoes before entering any place of worship.</span>
+        <span class="en">Dress modestly when visiting temples or religious sites &mdash; cover shoulders and knees. Remove shoes before entering any place of worship.</span>
+        <span class="de">Kleiden Sie sich bescheiden beim Besuch von Tempeln &mdash; Schultern und Knie bedecken. Schuhe vor jedem Gotteshaus ausziehen.</span>
       </li>
       <li>
         <span class="tip-num">8</span>
-        <span data-en="A local SIM card (Airtel or Jio) gives you cheap data and calling. You'll need your passport and a local address to register it." data-de="Eine lokale SIM-Karte (Airtel oder Jio) bietet günstige Daten und Anrufe. Sie benötigen Ihren Pass und eine lokale Adresse zur Registrierung.">A local SIM card (Airtel or Jio) gives you cheap data and calling. You'll need your passport and a local address to register it.</span>
+        <span class="en">A local SIM card (Airtel or Jio) gives you cheap data and calling. You'll need your passport and a local address to register it.</span>
+        <span class="de">Eine lokale SIM-Karte (Airtel oder Jio) bietet g&uuml;nstige Daten und Anrufe. Sie ben&ouml;tigen Ihren Pass und eine lokale Adresse zur Registrierung.</span>
       </li>
     </ul>
   </div>
 </div>
 
-<!-- ── DOS AND DON'TS ── -->
+<!-- �� DOS AND DON'TS �� -->
 <div class="w3-container w3-padding-64 w3-white w3-grayscale-min" id="dosdontss">
   <div class="w3-content">
-    <span class="section-icon">✔️</span>
-    <h1 class="w3-text-grey w3-center"><b data-en="Dos &amp; Don'ts" data-de="Verhaltensregeln">Dos &amp; Don'ts</b></h1>
-    <p class="w3-center w3-text-grey" data-en="A few cultural basics that will make you a respectful and welcomed guest." data-de="Ein paar kulturelle Grundlagen, die Sie zu einem respektvollen Gast machen.">
-      A few cultural basics that will make you a respectful and welcomed guest.
-    </p>
+    <span class="section-icon">&#x2714;&#xFE0F;</span>
+    <h1 class="w3-text-grey w3-center en"><b>Dos &amp; Don'ts</b></h1>
+    <h1 class="w3-text-grey w3-center de"><b>Verhaltensregeln</b></h1>
+    <p class="w3-center w3-text-grey en">A few cultural basics that will make you a respectful and welcomed guest.</p>
+    <p class="w3-center w3-text-grey de">Ein paar kulturelle Grundlagen, die Sie zu einem respektvollen Gast machen.</p>
 
     <div class="dd-grid">
       <!-- DOS -->
       <div class="dd-col dos">
-        <h3 data-en="✓ Do" data-de="✓ Tun">✓ Do</h3>
+        <h3 class="en">&#x2713; Do</h3>
+        <h3 class="de">&#x2713; Tun</h3>
         <ul class="dd-list">
-          <li><span class="bullet">👋</span><span data-en="Greet people with <em>Namaskar</em> (hands pressed together). It's warm, universally appreciated, and culturally correct." data-de="Menschen mit <em>Namaskar</em> begrüßen (Hände zusammengedrückt). Es ist herzlich und kulturell korrekt.">Greet people with <em>Namaskar</em> (hands pressed together). It's warm, universally appreciated, and culturally correct.</span></li>
-          <li><span class="bullet">👟</span><span data-en="Remove your shoes before entering someone's home or a temple. Look for shoes at the door as your cue." data-de="Schuhe ausziehen, bevor Sie jemandes Haus oder einen Tempel betreten. Achten Sie auf Schuhe an der Tür als Hinweis.">Remove your shoes before entering someone's home or a temple. Look for shoes at the door as your cue.</span></li>
-          <li><span class="bullet">🤝</span><span data-en="Accept food or drink when offered — refusing can be seen as rude. Even a small taste is a sign of respect." data-de="Angebotenes Essen oder Trinken annehmen — Ablehnen kann als unhöflich gelten. Auch ein kleiner Bissen ist ein Zeichen des Respekts.">Accept food or drink when offered — refusing can be seen as rude. Even a small taste is a sign of respect.</span></li>
-          <li><span class="bullet">🧴</span><span data-en="Carry hand sanitiser and use it often, especially before eating street food." data-de="Handdesinfektionsmittel mitführen und oft benutzen, besonders vor dem Essen von Straßenessen.">Carry hand sanitiser and use it often, especially before eating street food.</span></li>
-          <li><span class="bullet">💵</span><span data-en="Tip generously. ₹50–100 for a meal, ₹20–50 for small services goes a very long way." data-de="Großzügig Trinkgeld geben. ₹50–100 für eine Mahlzeit, ₹20–50 für kleine Dienste sind sehr wertgeschätzt.">Tip generously. ₹50–100 for a meal goes a very long way.</span></li>
+          <li><span class="bullet">&#x1F44B;</span><span class="en">Greet people with <em>Namaskar</em> (hands pressed together). It's warm, universally appreciated, and culturally correct.</span><span class="de">Menschen mit <em>Namaskar</em> begr&uuml;&szlig;en (H&auml;nde zusammengedr&uuml;ckt). Es ist herzlich und kulturell korrekt.</span></li>
+          <li><span class="bullet">&#x1F45F;</span><span class="en">Remove your shoes before entering someone's home or a temple. Look for shoes at the door as your cue.</span><span class="de">Schuhe ausziehen, bevor Sie jemandes Haus oder einen Tempel betreten. Achten Sie auf Schuhe an der T&uuml;r als Hinweis.</span></li>
+          <li><span class="bullet">&#x1F91D;</span><span class="en">Accept food or drink when offered &mdash; refusing can be seen as rude. Even a small taste is a sign of respect.</span><span class="de">Angebotenes Essen oder Trinken annehmen &mdash; Ablehnen kann als unh&ouml;flich gelten. Auch ein kleiner Bissen ist ein Zeichen des Respekts.</span></li>
+          <li><span class="bullet">&#x1F9F4;</span><span class="en">Carry hand sanitiser and use it often, especially before eating street food.</span><span class="de">Handdesinfektionsmittel mitf&uuml;hren und oft benutzen, besonders vor dem Essen von Stra&szlig;enessen.</span></li>
+          <li><span class="bullet">&#x1F4B5;</span><span class="en">Tip generously. &#x20B9;50&ndash;100 for a meal, &#x20B9;20&ndash;50 for small services goes a very long way.</span><span class="de">Gro&szlig;z&uuml;gig Trinkgeld geben. &#x20B9;50&ndash;100 f&uuml;r eine Mahlzeit, &#x20B9;20&ndash;50 f&uuml;r kleine Dienste sind sehr wertgesch&auml;tzt.</span></li>
         </ul>
       </div>
 
       <!-- DON'TS -->
       <div class="dd-col donts">
-        <h3 data-en="✗ Don't" data-de="✗ Nicht tun">✗ Don't</h3>
+        <h3 class="en">&#x2717; Don't</h3>
+        <h3 class="de">&#x2717; Nicht tun</h3>
         <ul class="dd-list">
-          <li><span class="bullet">💋</span><span data-en="Don't show public affection beyond a handshake. Kissing or embracing in public can draw unwanted attention." data-de="Keine öffentliche Zuneigung über einen Handschlag hinaus zeigen. Küssen oder Umarmen in der Öffentlichkeit kann unerwünschte Aufmerksamkeit erregen.">Don't show public affection beyond a handshake. Kissing or embracing in public can draw unwanted attention.</span></li>
-          <li><span class="bullet">🦶</span><span data-en="Don't point your feet at people or religious objects — it's considered deeply disrespectful. Tuck them away when sitting." data-de="Nicht mit den Füßen auf Menschen oder religiöse Gegenstände zeigen — gilt als sehr respektlos. Beim Sitzen Füße wegstecken.">Don't point your feet at people or religious objects — it's considered deeply disrespectful. Tuck them away when sitting.</span></li>
-          <li><span class="bullet">🚱</span><span data-en="Don't drink tap water — ever. Even locals who do so have built up immunity over years." data-de="Niemals Leitungswasser trinken. Selbst Einheimische, die es tun, haben über Jahre Immunität aufgebaut.">Don't drink tap water — ever. Even locals who do so have built up immunity over years.</span></li>
-          <li><span class="bullet">📵</span><span data-en="Don't photograph military installations, airports, or government buildings. It's illegal and taken seriously." data-de="Keine Militäranlagen, Flughäfen oder Regierungsgebäude fotografieren. Es ist illegal und wird ernst genommen.">Don't photograph military installations, airports, or government buildings. It's illegal and taken seriously.</span></li>
-          <li><span class="bullet">🗣️</span><span data-en="Don't raise your voice or show visible frustration. Patience and a smile solve far more problems than anger ever will." data-de="Die Stimme nicht erheben oder sichtbare Frustration zeigen. Geduld und ein Lächeln lösen weit mehr Probleme als Ärger.">Don't raise your voice or show visible frustration. Patience and a smile solve far more problems than anger ever will.</span></li>
+          <li><span class="bullet">&#x1F48B;</span><span class="en">Don't show public affection beyond a handshake. Kissing or embracing in public can draw unwanted attention.</span><span class="de">Keine &ouml;ffentliche Zuneigung &uuml;ber einen Handschlag hinaus zeigen. K&uuml;ssen oder Umarmen in der &Ouml;ffentlichkeit kann unerw&uuml;nschte Aufmerksamkeit erregen.</span></li>
+          <li><span class="bullet">&#x1F9B6;</span><span class="en">Don't point your feet at people or religious objects &mdash; it's considered deeply disrespectful. Tuck them away when sitting.</span><span class="de">Nicht mit den F&uuml;&szlig;en auf Menschen oder religi&ouml;se Gegenst&auml;nde zeigen &mdash; gilt als sehr respektlos. Beim Sitzen F&uuml;&szlig;e wegstecken.</span></li>
+          <li><span class="bullet">&#x1F6B1;</span><span class="en">Don't drink tap water &mdash; ever. Even locals who do so have built up immunity over years.</span><span class="de">Niemals Leitungswasser trinken. Selbst Einheimische, die es tun, haben &uuml;ber Jahre Immunit&auml;t aufgebaut.</span></li>
+          <li><span class="bullet">&#x1F4F5;</span><span class="en">Don't photograph military installations, airports, or government buildings. It's illegal and taken seriously.</span><span class="de">Keine Milit&auml;ranlagen, Flugh&auml;fen oder Regierungsgeb&auml;ude fotografieren. Es ist illegal und wird ernst genommen.</span></li>
+          <li><span class="bullet">&#x1F5E3;&#xFE0F;</span><span class="en">Don't raise your voice or show visible frustration. Patience and a smile solve far more problems than anger ever will.</span><span class="de">Die Stimme nicht erheben oder sichtbare Frustration zeigen. Geduld und ein L&auml;cheln l&ouml;sen weit mehr Probleme als &Auml;rger.</span></li>
         </ul>
       </div>
     </div>
@@ -388,30 +451,9 @@ p { line-height: 2; }
 
 <!-- Footer -->
 <footer class="w3-center w3-black w3-padding-16">
-  <p><a href="index.html" class="w3-hover-text-red w3-text-grey" data-en="← Back to the Wedding" data-de="← Zurück zur Hochzeit">← Back to the Wedding</a></p>
+  <p><a href="index.html" class="w3-hover-text-red w3-text-grey en">&larr; Back to the Wedding</a><a href="index.html" class="w3-hover-text-red w3-text-grey de">� Zur&uuml;ck zur Hochzeit</a></p>
 </footer>
 <div class="w3-hide-small" style="margin-bottom:32px">&nbsp;</div>
-
-<script>
-(function () {
-  var currentLang = 'en';
-
-  function applyLang(lang) {
-    document.querySelectorAll('[data-en]').forEach(function (el) {
-      var text = el.getAttribute('data-' + lang) || el.getAttribute('data-en');
-      el.innerHTML = text.replace(/\n/g, '<br>');
-    });
-    document.getElementById('opt-en').classList.toggle('active', lang === 'en');
-    document.getElementById('opt-de').classList.toggle('active', lang === 'de');
-    document.documentElement.lang = lang;
-    currentLang = lang;
-  }
-
-  document.getElementById('langToggle').addEventListener('click', function () {
-    applyLang(currentLang === 'en' ? 'de' : 'en');
-  });
-})();
-</script>
 
 </body>
 </html>
