@@ -17,21 +17,101 @@ p {line-height: 2}
 }
 .bgimg {background-image: url("2017.jpg")}
 .bgimg2 {background-image: url("/w3images/flowers.jpg")}
+
+/* CHANGE 1: Header text margin only on larger screens */
+.header-text {
+  /* no left margin by default (mobile) */
+}
+@media (min-width: 601px) {
+  .header-text {
+    margin-left: 3in;
+  }
+}
+
+/* CHANGE 2: Timeline — horizontal on desktop, vertical on mobile */
+.tl-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 48px 0;
+}
+.tl-wrap::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: #888;
+}
+.tl-event {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+  width: 90px;
+}
+.tl-event.above { flex-direction: column-reverse; }
+.tl-icon {
+  width: 48px; height: 48px;
+  background: #fce4e4;
+  border: 1px solid #888;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; flex-shrink: 0;
+  transition: background 0.2s, transform 0.2s;
+  cursor: default;
+}
+.tl-event:hover .tl-icon { background: #888; transform: scale(1.1); }
+.tl-event:hover .tl-icon svg { stroke: #fff; }
+.tl-icon svg {
+  width: 20px; height: 20px;
+  stroke: #555; fill: none;
+  stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;
+  transition: stroke 0.2s;
+}
+.tl-info { text-align: center; }
+.tl-time {
+  display: block; font-size: 0.6rem;
+  letter-spacing: 0.1em; color: #888; margin: 6px 0 2px;
+}
+.tl-label {
+  display: block; font-size: 0.72rem; font-weight: 600;
+  letter-spacing: 0.05em; color: #555;
+  text-transform: uppercase; line-height: 1.3;
+}
+
+/* CHANGE 3: Mobile timeline becomes vertical */
+@media (max-width: 600px) {
+  .tl-wrap {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+  }
+  /* vertical line */
+  .tl-wrap::before {
+    top: 0; bottom: 0; left: 23px;
+    right: auto;
+    width: 1px; height: auto;
+  }
+  .tl-event,
+  .tl-event.above {
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    gap: 16px;
+  }
+  .tl-info { text-align: left; }
+}
 </style>
 </head>
 <body>
 
-<!-- Header / Home-->
-<header class="w3-display-container w3-wide bgimg w3-grayscale-min" id="home">
-  <div class="w3-display-middle w3-text-white w3-center" style="margin-left: 3in">
-    <h1 class="w3-jumbo">Yajnaseni & Emanuel</h1>
-    <h2>Are getting married</h2>
-    <h2><b>03.01.2027</b></h2>
-  </div>
-</header>
-
-<!-- Navbar (sticky bottom) -->
-<div class="w3-bottom w3-hide-small">
+<!-- CHANGE 1: Navbar moved to top and visible on all screen sizes -->
+<!-- Original: <div class="w3-bottom w3-hide-small"> -->
+<div class="w3-top">
   <div class="w3-bar w3-white w3-center w3-padding w3-opacity-min w3-hover-opacity-off">
     <a href="#home" style="width:20%" class="w3-bar-item w3-button">Home</a>
     <a href="#wedding" style="width:20%" class="w3-bar-item w3-button">Wedding</a>
@@ -41,45 +121,38 @@ p {line-height: 2}
   </div>
 </div>
 
-
-
+<!-- Header / Home -->
+<!-- CHANGE 1: Added padding-top to push content below fixed navbar; removed inline margin-left, replaced with class -->
+<header class="w3-display-container w3-wide bgimg w3-grayscale-min" id="home" style="padding-top: 48px;">
+  <div class="w3-display-middle w3-text-white w3-center header-text">
+    <!-- CHANGE 1: margin-left:3in moved to CSS media query (only on larger screens) -->
+    <h1 class="w3-jumbo">Yajnaseni & Emanuel</h1>
+    <h2>Are getting married</h2>
+    <h2><b>03.01.2027</b></h2>
+  </div>
+</header>
 
 <!-- Wedding information -->
 <div class="w3-container w3-padding-64 w3-pale-red w3-grayscale-min w3-center" id="wedding">
   <div class="w3-content">
     <h1 class="w3-text-grey"><b>THE WEDDING</b></h1>
-<div class="w3-row">
-  <div class="w3-third">
-    <h2>When</h2>
-    <p>Wedding Ceremony - 19:10pm</p>
-    <p>Reception & Dinner - 18:30pm</p>
-  </div>
+    <div class="w3-row">
+      <div class="w3-third">
+        <h2>When</h2>
+        <p>Wedding Ceremony - 19:10pm</p>
+        <p>Reception & Dinner - 18:30pm</p>
+      </div>
+      <div class="w3-third w3-center">
+        <img src="fish-transparent.png" alt="Logo" style="max-width: 120px; opacity: 0.8;">
+      </div>
+      <div class="w3-third">
+        <h2>Where</h2>
+        <p>PC Chandra Gardens</p>
+        <p>Some where, some address</p>
+      </div>
+    </div>
 
-  <div class="w3-third w3-center">
-    <img src="fish-transparent.png" alt="Logo" style="max-width: 120px; opacity: 0.8;">
-  </div>
-
-  <div class="w3-third">
-    <h2>Where</h2>
-    <p>PC Chandra Gardens</p>
-    <p>Some where, some address</p>
-  </div>
-</div>
-    <!-- TIMELINE -->
-    <style>
-      .tl-wrap { position: relative; display: flex; align-items: center; justify-content: space-between; margin: 48px 0; }
-      .tl-wrap::before { content: ''; position: absolute; top: 50%; left: 0; right: 0; height: 1px; background: #888; }
-      .tl-event { display: flex; flex-direction: column; align-items: center; position: relative; z-index: 1; width: 90px; }
-      .tl-event.above { flex-direction: column-reverse; }
-      .tl-icon { width: 48px; height: 48px; background: #fce4e4; border: 1px solid #888; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; transition: background 0.2s, transform 0.2s; cursor: default; }
-      .tl-event:hover .tl-icon { background: #888; transform: scale(1.1); }
-      .tl-event:hover .tl-icon svg { stroke: #fff; }
-      .tl-icon svg { width: 20px; height: 20px; stroke: #555; fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; transition: stroke 0.2s; }
-      .tl-info { text-align: center; }
-      .tl-time { display: block; font-size: 0.6rem; letter-spacing: 0.1em; color: #888; margin: 6px 0 2px; }
-      .tl-label { display: block; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.05em; color: #555; text-transform: uppercase; line-height: 1.3; }
-    </style>
-
+    <!-- TIMELINE — styling moved to <head> for mobile responsiveness -->
     <div class="tl-wrap">
       <div class="tl-event below">
         <div class="tl-icon"><svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
@@ -89,21 +162,21 @@ p {line-height: 2}
         <div class="tl-icon"><svg viewBox="0 0 22 22"><path d="M6 8h12l-1.5 8H7.5L6 8z"/><path d="M4 8h16"/><path d="M10 8V6c0-1 .5-2 2-2s2 1 2 2v2"/><path d="M9 13c1 1 5 1 6 0"/></svg></div>
         <div class="tl-info"><span class="tl-time">10:30</span><span class="tl-label">Haldi<br>Ceremony</span></div>
       </div>
-<div class="tl-event below">
+      <div class="tl-event below">
         <div class="tl-icon"><svg viewBox="0 0 22 22"><path d="M3 2v7c0 1.1.9 2 2 2h2v11h2V11h2a2 2 0 0 0 2-2V2h-2v5H7V2H5v5H3V2H3z"/><path d="M18 2c0 0-3 3-3 7s3 5 3 5v8h2V2h-2z"/></svg></div>
-        <div class="tl-info"><span class="tl-time">10:00 AM</span><span class="tl-label">Lunch</span></div>
+        <div class="tl-info"><span class="tl-time">12:00 PM</span><span class="tl-label">Lunch</span></div>
       </div>
       <div class="tl-event above">
         <div class="tl-icon"><svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
-        <div class="tl-info"><span class="tl-time">14:00 AM</span><span class="tl-label">Shuttle back to<br>Hotel</span></div>
+        <div class="tl-info"><span class="tl-time">2:00 PM</span><span class="tl-label">Shuttle back to<br>Hotel</span></div>
       </div>
-       <div class="tl-event below">
+      <div class="tl-event below">
         <div class="tl-icon"><svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
-        <div class="tl-info"><span class="tl-time">17:45</span><span class="tl-label">Shuttle from<br>Hotel</span></div>
+        <div class="tl-info"><span class="tl-time">5:45 PM</span><span class="tl-label">Shuttle from<br>Hotel</span></div>
       </div>
       <div class="tl-event above">
         <div class="tl-icon"><svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></div>
-        <div class="tl-info"><span class="tl-time">18:00</span><span class="tl-label">Wedding<br>Photos</span></div>
+        <div class="tl-info"><span class="tl-time">6:00 PM</span><span class="tl-label">Wedding<br>Photos</span></div>
       </div>
       <div class="tl-event above">
         <div class="tl-icon"><svg viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></div>
@@ -123,6 +196,7 @@ p {line-height: 2}
       </div>
     </div>
     <!-- END TIMELINE -->
+  </div>
 </div>
 
 <!-- RSVP section -->
@@ -130,31 +204,10 @@ p {line-height: 2}
   <h1>HOPE YOU CAN MAKE IT!</h1>
   <p class="w3-large">Kindly Respond By July 31, 2026</p>
   <p class="w3-xlarge">
-    <button href="https://form.jotform.com/260462524798062" class="w3-button w3-round w3-red w3-opacity w3-hover-opacity-off" style="padding:8px 60px">RSVP</button>
+    <!-- CHANGE 4: Was <button href="..."> which doesn't work. Changed to <a> tag. -->
+    <a href="https://form.jotform.com/260462524798062" class="w3-button w3-round w3-red w3-opacity w3-hover-opacity-off" style="padding:8px 60px">RSVP</a>
   </p>
 </div>
-
-<!-- RSVP modal -->
-<!--<div id="id01" class="w3-modal">
-  <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="padding:32px;max-width:600px">
-    <div class="w3-container w3-white w3-center">
-      <h1 class="w3-wide">CAN YOU COME?</h1>
-      <p>We really hope you can make it.</p>
-      <form>
-        <input class="w3-input w3-border" type="text" placeholder="Name(s)" name="name">
-      </form>
-      <p><i>Sincerely, Emanuel &amp; Yajnaseni</i></p>
-      <div class="w3-row">
-        <div class="w3-half">
-          <button onclick="document.getElementById('id01').style.display='none'" type="button" class="w3-button w3-block w3-green">Going</button>
-        </div>
-        <div class="w3-half">
-          <button onclick="document.getElementById('id01').style.display='none'" type="button" class="w3-button w3-block w3-red">Can't come</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>-->
 
 <!-- About / us -->
 <div class="w3-container w3-padding-64 w3-pale-red w3-grayscale-min" id="us">
@@ -169,13 +222,11 @@ p {line-height: 2}
   </div>
 </div>
 
-
-
 <!-- Footer -->
 <footer class="w3-center w3-black w3-padding-16">
   <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-text-green">w3.css</a></p>
 </footer>
-<div class="w3-hide-small" style="margin-bottom:32px">&nbsp;</div>
+<!-- CHANGE 5: Removed the spacer div that was compensating for the bottom navbar (no longer needed) -->
 
 </body>
 </html>
