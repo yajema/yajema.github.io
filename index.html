@@ -6,93 +6,25 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="styles.css">
+
 <style>
 
-/* Hide all language elements by default */
-.en, .de { display: none; }
-
-/* Show only the ones matching the current lang */
-.en:lang(en), .de:lang(de) { display: block; }
-
-body,h1,h2{font-family: "Raleway", sans-serif}
-body, html {height: 100%}
-p {line-height: 2}
 .bgimg, .bgimg2 {
   min-height: 100%;
   background-position: center;
   background-size: cover;
 }
+
 .bgimg {background-image: url("2017.jpg")}
 .bgimg2 {background-image: url("/w3images/flowers.jpg")}
 
-/* Timeline base styles — desktop unchanged */
-.tl-wrap { position: relative; display: flex; align-items: center; justify-content: space-between; margin: 48px 0; }
-.tl-wrap::before { content: ''; position: absolute; top: 50%; left: 0; right: 0; height: 1px; background: #888; }
-.tl-event { display: flex; flex-direction: column; align-items: center; position: relative; z-index: 1; width: 90px; }
-.tl-event.above { flex-direction: column-reverse; }
-.tl-icon { width: 48px; height: 48px; background: #fce4e4; border: 1px solid #888; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; transition: background 0.2s, transform 0.2s; cursor: default; }
-.tl-event:hover .tl-icon { background: #888; transform: scale(1.1); }
-.tl-event:hover .tl-icon svg { stroke: #fff; }
-.tl-icon svg { width: 20px; height: 20px; stroke: #555; fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; transition: stroke 0.2s; }
-.tl-info { text-align: center; }
-.tl-time { display: block; font-size: 0.6rem; letter-spacing: 0.1em; color: #888; margin: 6px 0 2px; }
-.tl-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.05em; color: #555; text-transform: uppercase; line-height: 1.3; }
-
-/* ── LANGUAGE TOGGLE BUTTON ── */
-.lang-toggle {
-  position: fixed;
-  top: 12px;
-  right: 16px;
-  z-index: 1100;
-  background: #fff;
-  border: 1.5px solid #bbb;
-  border-radius: 999px;
-  display: flex;
-  align-items: center;
-  overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.13);
-  cursor: pointer;
-  font-family: "Raleway", sans-serif;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  user-select: none;
-}
-.lang-toggle .lang-opt {
-  padding: 6px 14px;
-  transition: background 0.2s, color 0.2s;
-  color: #888;
-}
-.lang-toggle .lang-opt.active {
-  background: #888;
-  color: #fff;
-}
-
-/* ── MOBILE-ONLY FIXES (≤600px) — desktop is completely unaffected ── */
-@media (max-width: 600px) {
-  .bgimg { background-position: left center !important; }
-  .nav-wrap {
-    position: fixed !important;
-    bottom: auto !important;
-    top: 0 !important;
-    left: 0;
-    right: 0;
-    z-index: 999;
-  }
-  .nav-wrap .w3-bar-item { font-size: 0.65rem !important; padding: 8px 2px !important; }
-  .header-inner { margin-left: 0 !important; padding-top: 56px; }
-  .tl-wrap { flex-direction: column !important; align-items: flex-start !important; gap: 20px; }
-  .tl-wrap::before { top: 0 !important; bottom: 0 !important; left: 23px !important; right: auto !important; width: 1px !important; height: 100% !important; }
-  .tl-event, .tl-event.above { flex-direction: row !important; align-items: center !important; width: 100% !important; gap: 14px; }
-  .tl-info { text-align: left !important; }
-  /* Push toggle below mobile nav */
-  .lang-toggle { top: 56px; }
-}
 </style>
+
 </head>
 <body>
 
-<!-- ── LANGUAGE TOGGLE ── -->
+<!-- LANGUAGE TOGGLE -->
 
 <div class="lang-toggle" id="langToggle" title="Switch language">
   <span class="lang-opt active" data-lang="en" onclick="document.documentElement.lang = this.dataset.lang">EN</span>
@@ -106,6 +38,12 @@ p {line-height: 2}
     <h2 class="en">are getting married</h2>
     <h2 class="de">heiraten</h2>
     <h2><b>03.01.2027</b></h2>
+    <p class="w3-xxlarge en">
+    <a href="https://form.jotform.com/260462524798062" class="w3-button w3-round w3-red" style="padding:4px 40px">RSVP</a>
+    </p>
+    <p class="w3-xxlarge de">
+    <a href="https://form.jotform.com/260462524798062" class="w3-button w3-round w3-red" style="padding:4px 40px">Anmelden</a>
+    </p>
   </div>
 </header>
 
