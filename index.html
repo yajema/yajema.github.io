@@ -24,12 +24,39 @@
 </head>
 <body>
 
-<!-- LANGUAGE TOGGLE -->
+<!-- Navbar -->
+<div class="w3-top w3-hide-small nav-wrap">
+  <div class="w3-bar w3-white w3-center w3-padding w3-opacity-min w3-hover-opacity-off">
+    <span class="en">
+    <a href="#home"    style="width:16%" class="w3-bar-item w3-button">Home</a>
+    <a href="#wedding" style="width:16%" class="w3-bar-item w3-button">Wedding</a>
+    <a href="https://form.jotform.com/260462524798062" style="width:16%" class="w3-bar-item w3-button w3-hover-black">RSVP</a>
+    <a href="#us"      style="width:16%" class="w3-bar-item w3-button">Our Story</a>
+    <a href="india.html" target="_blank" style="width:16%" class="w3-bar-item w3-button">India 101</a>
+    <div class="lang-toggle w3-bar-item w3-button" style="width:12%" title="Switch language">
+      <span class="lang-opt active" data-lang="en" onclick="document.documentElement.lang = this.dataset.lang">&#x1F1EC;&#x1F1E7; EN</span>
+      <span class="lang-opt" data-lang="de" onclick="document.documentElement.lang = this.dataset.lang">&#x1F1E9;&#x1F1EA; DE</span>
+    </div>
+    </span>
+    <span class="de">
+    <a href="#home"    style="width:16%" class="w3-bar-item w3-button">Start</a>
+    <a href="#wedding" style="width:16%" class="w3-bar-item w3-button">Hochzeit</a>
+    <a href="https://form.jotform.com/260462524798062" style="width:16%" class="w3-bar-item w3-button w3-hover-black">Anmeldung</a>
+    <a href="#us"      style="width:16%" class="w3-bar-item w3-button">Unsere Geschichte</a>
+    <a href="india.html" target="_blank" style="width:16%" class="w3-bar-item w3-button">India 101</a>
+    <div class="lang-toggle w3-bar-item w3-button" style="width:12%" title="Switch language">
+      <span class="lang-opt" data-lang="en" onclick="document.documentElement.lang = this.dataset.lang">&#x1F1EC;&#x1F1E7; EN</span>
+      <span class="lang-opt active" data-lang="de" onclick="document.documentElement.lang = this.dataset.lang">&#x1F1E9;&#x1F1EA; DE</span>
+    </div>
+    </span>
+  </div>
+</div>
 
-<div class="lang-toggle" id="langToggle" title="Switch language">
+<!-- Language Toggle
+<div class="lang-toggle w3-bar-item w3-button" style="width:10%" id="langToggle" title="Switch language">
   <span class="lang-opt active" data-lang="en" onclick="document.documentElement.lang = this.dataset.lang">EN</span>
   <span class="lang-opt" data-lang="de" onclick="document.documentElement.lang = this.dataset.lang">DE</span>
-</div>
+</div> -->
 
 <!-- Header / Home -->
 <header class="w3-display-container w3-wide bgimg w3-grayscale-min" id="home">
@@ -46,27 +73,6 @@
     </p>
   </div>
 </header>
-
-<!-- Navbar -->
-<div class="w3-bottom w3-hide-small nav-wrap en">
-  <div class="w3-bar w3-white w3-center w3-padding w3-opacity-min w3-hover-opacity-off">
-    <a href="#home"    style="width:20%" class="w3-bar-item w3-button">Home</a>
-    <a href="#wedding" style="width:20%" class="w3-bar-item w3-button">Wedding</a>
-    <a href="https://form.jotform.com/260462524798062" style="width:20%" class="w3-bar-item w3-button w3-hover-black">RSVP</a>
-    <a href="#us"      style="width:20%" class="w3-bar-item w3-button">Our Story</a>
-    <a href="india.html" target="_blank" style="width:20%" class="w3-bar-item w3-button">India 101</a>
-  </div>
-</div>
-<div class="w3-bottom w3-hide-small nav-wrap de">
-  <div class="w3-bar w3-white w3-center w3-padding w3-opacity-min w3-hover-opacity-off">
-    <a href="#home"    style="width:20%" class="w3-bar-item w3-button">Start</a>
-    <a href="#wedding" style="width:20%" class="w3-bar-item w3-button">Hochzeit</a>
-    <a href="https://form.jotform.com/260462524798062" style="width:20%" class="w3-bar-item w3-button w3-hover-black">Anmeldung</a>
-    <a href="#us"      style="width:20%" class="w3-bar-item w3-button">Unsere Geschichte</a>
-    <a href="india.html" target="_blank" style="width:20%" class="w3-bar-item w3-button">India 101</a>
-  </div>
-</div>
-
 
 <!-- Wedding information -->
 <div class="w3-container w3-padding-64 w3-pale-red w3-grayscale-min w3-center" id="wedding">
