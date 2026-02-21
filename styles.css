@@ -181,6 +181,30 @@ p {line-height: 2}
   margin-top: 1px;
 }
 
+/* Login form */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #333;
+    font-weight: 500;
+}
+
+.form-group input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.form-group input[type="password"]:focus {
+    outline: none;
+}
+
 /* -- MOBILE-ONLY FIXES (≤600px) — desktop is completely unaffected -- */
 @media (max-width: 600px) {
   .bgimg { background-position: left center !important; }

@@ -15,8 +15,11 @@
 
 <style>
 
+#weddingContent { display: none; }
+#loginContainer { display: flex; }
+
 .bgimg, .bgimg2 {
-  min-height: 100%;
+  min-height: 100vh;
   background-position: center;
   background-size: cover;
 }
@@ -28,6 +31,48 @@
 
 </head>
 <body>
+
+<!-- LOGIN SCREEN -->
+<div id="loginContainer">
+<div class="w3-container w3-padding-32 w3-pale-red w3-grayscale-min w3-center">
+    <h2>
+        <div class="w3-button lang-opt" data-lang="en" onclick="document.documentElement.lang = this.dataset.lang">English</div>
+        <div class="w3-button lang-opt" data-lang="de" onclick="document.documentElement.lang = this.dataset.lang">Deutsch</div>
+    </h2>
+    <div class="w3-content">
+        <p class="en">Please enter the last word on the second line of the invite to view our wedding website</p>
+        <p class="de">Bitte das letzte Wort der zweiten Zeile unserer Einladung eingeben, um die Webseite zu sehen</p>
+        <form id="loginForm">
+            <div class="form-group">
+                <input 
+                    type="password" 
+                    id="password" 
+                    name="password" 
+                    placeholder="Enter password"
+                    autocomplete="off"
+                    required
+                >
+            </div>
+            <div class="w3-container" style="display: block; text-align:center;">
+                <button type="submit" class="w3-button en">Access Wedding Site</button>
+                <button type="submit" class="w3-button de">Zur Webseite</button>
+            </div>
+            <div class="w3-container" style="display: none;" id="errorMessage">
+            <span class="en">
+                Incorrect password. Please try again.
+            </span>
+            <span class="de">
+                Falsches Passwort. Bitte noch einmal versuchen.
+            </span>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+
+<!-- Wedding website content -->
+<!-- Yes, we know it's not very secure... But it's enough for our purposes :) -->
+<div class="wedding-content" id="weddingContent">
 
 <!-- Navbar -->
 <div class="w3-top w3-hide-small nav-wrap">
@@ -200,13 +245,104 @@
 </div>
 </div>
 
-
-
 <!-- Footer -->
 <footer class="w3-center w3-black w3-padding-16">
   <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-text-green">w3.css</a></p>
 </footer>
 <div class="w3-hide-small" style="margin-bottom:32px">&nbsp;</div>
+
+</div>
+
+<!-- PASSWORD PROTECTION JAVASCRIPT -->
+<script>
+    // Security: Password hashes (SHA-256)
+    // These are pre-computed hashes to avoid storing plain text passwords
+    const validPasswordHashes = [
+        'f9ce3beb80492facbec3586308e6590ef4b543c570a119d1e9b575f3b12ce197',
+        '4f5b838eb967599cc82011ed302458abd3066400893054570ca9c7b676ea380b'
+    ];
+
+    // Track authentication state in memory (not persistent)
+    let isAuthenticated = false;
+
+    /**
+     * Hashes a password using SHA-256
+     * @param {string} password - The password to hash
+     * @returns {Promise<string>} The hexadecimal hash string
+    */
+    async function hashPassword(password) {
+        const encoder = new TextEncoder();
+        const data = encoder.encode(password);
+        const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+        const hashArray = Array.from(new Uint8Array(hashBuffer));
+        const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        return hashHex;
+    }
+
+    /**
+     * Verifies if the provided password matches any valid password
+     * @param {string} password - The password to verify
+     * @returns {Promise<boolean>} True if password is valid
+     */
+    async function verifyPassword(password) {
+        const hash = await hashPassword(password);
+        return validPasswordHashes.includes(hash);
+    }
+
+    /**
+     * Shows the wedding website and hides the login form
+     */
+    function showWeddingContent() {
+        document.getElementById('loginContainer').style.display = 'none';
+        document.getElementById('weddingContent').style.display = 'block';
+        isAuthenticated = true;
+    }
+
+    /**
+     * Shows the login form and hides the wedding website
+     */
+    function showLoginForm() {
+        document.getElementById('loginContainer').style.display = 'flex';
+        document.getElementById('weddingContent').style.display - 'none';
+        document.getElementById('password').value = '';
+        document.getElementById('errorMessage').classList.remove('show');
+        isAuthenticated = false;
+    }
+
+    /**
+     * Handles the login form submission
+     */
+    document.getElementById('loginForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const password = document.getElementById('password').value;
+        const errorMessage = document.getElementById('errorMessage');
+        
+        // Verify password
+        const isValid = await verifyPassword(password);
+        
+        if (isValid) {
+            // Password correct - show wedding content
+            errorMessage.classList.remove('show');
+            showWeddingContent();
+        } else {
+            // Password incorrect - show error
+            errorMessage.style.display = 'block';
+            document.getElementById('password').value = '';
+            document.getElementById('password').focus();
+        }
+    });
+
+    // Prevent back button from revealing content after session ends
+    window.addEventListener('pageshow', function(event) {
+        if (event.persisted || (window.performance && window.performance.navigation.type === 2)) {
+            if (!isAuthenticated) {
+                showLoginForm();
+            }
+        }
+    });
+</script>
+
 
 </body>
 </html>
